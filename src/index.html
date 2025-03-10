@@ -21,7 +21,7 @@
         type="button"
         class="btn btn-primary px-4"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#modal"
         data-bs-whatever="@mdo"
       >
         + Create Task
@@ -78,6 +78,7 @@
         <h2>My Tasks</h2>
       </div>
     </div>
+    <!-- FOOTER -->
     <footer class="d-flex align-items-center justify-content-center">
       <i style="font-size: 24px" class="fa pe-2">&#xf09b;</i
       ><a href="https://github.com/korot0" target="_blank" class="link-primary">
@@ -87,15 +88,15 @@
     <!-- MODAL -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="modal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="modalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+            <h1 class="modal-title fs-5" id="modalLabel">Create Task</h1>
             <button
               type="button"
               class="btn-close"
@@ -106,16 +107,42 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Recipient:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
+                <label for="task-title" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="task-title" />
               </div>
               <div class="mb-3">
-                <label for="message-text" class="col-form-label"
-                  >Message:</label
+                <label for="description" class="col-form-label"
+                  >Description</label
                 >
-                <textarea class="form-control" id="message-text"></textarea>
+                <textarea class="form-control" id="description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="List-Select" class="col-form-label"
+                  >Add to List</label
+                >
+                <select
+                  id="List-Select"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected>My Tasks</option>
+                  <option value="1">List 1</option>
+                  <option value="2">List 2</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="Priority-Select" class="col-form-label"
+                  >Select Priority</label
+                >
+                <select
+                  id="Priority-Select"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected value="low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
               </div>
             </form>
           </div>
@@ -127,7 +154,7 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Send message</button>
+            <button type="button" class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import { Accordion, Modal } from "bootstrap";
-import { Todo, changePriority } from "./todo.js";
+import { Task, changePriority } from "./task.js";
 import { Lists, List } from "./lists.js";
 
 const lists = Lists();
