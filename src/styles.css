@@ -1,7 +1,33 @@
-:root {
-  --white: #f2f2f2;
+body {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr;
 }
 
-body {
-  background-color: var(--white);
+header {
+  grid-area: header;
+  border-bottom: 2px solid var(--bs-border-color);
+}
+
+#sidebar {
+  grid-area: sidebar;
+  border-right: 2px solid var(--bs-border-color);
+}
+
+#sidebar > * {
+  margin: 1rem 0;
+}
+
+#main-content {
+  grid-area: main;
+}
+
+footer {
+  border-top: 2px solid var(--bs-border-color);
+  grid-area: footer;
 }

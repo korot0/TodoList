@@ -1,14 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark" class="h-100">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TodoList</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>MyLists</title>
   </head>
   <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>TodoList</h1>
-      <button class="btn btn-primary">Primary button</button>
+    <!-- HEADER -->
+    <header class="d-flex align-items-center">
+      <h1 class="ps-4">Lists</h1>
+    </header>
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="px-4">
+      <!-- ADD TASK BUTTON -->
+      <button
+        type="button"
+        class="btn btn-primary px-4"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo"
+      >
+        + create task
+      </button>
+      <div class="list-group">
+        <button
+          type="button"
+          class="list-group-item list-group-item-action active"
+          aria-current="true"
+        >
+          The current button
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          My Tasks
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          Today
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          This Week
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          Starred
+        </button>
+      </div>
+      <!-- LISTS ACCORDION -->
+      <div class="accordion" id="lists-accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              My Lists
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#lists-accordion"
+          >
+            <div class="accordion-body">
+              <p>List 1</p>
+              <p>List 2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div id="main-content" class="px-4 py-3">
+      <div class="container-fluid">
+        <p>some stuff goes here</p>
+      </div>
+    </div>
+    <footer class="d-flex align-items-center justify-content-center">
+      <i style="font-size: 24px" class="fa pe-2">&#xf09b;</i
+      ><a href="https://github.com/korot0" target="_blank" class="link-primary">
+        By korot0</a
+      >
+    </footer>
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Recipient:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Message:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

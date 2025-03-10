@@ -1,12 +1,28 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/css/bootstrap.css";
+import { Accordion, Modal } from "bootstrap";
 import "./styles.css";
 
-// import * as bootstrap from "bootstrap";
-// import Alert from "bootstrap/js/dist/alert";
-// // or, specify which plugins you need:
-// import { Tooltip, Toast, Popover } from "bootstrap";
+import { Todo, changePriority } from "./todo.js";
+import { Lists, List } from "./lists.js";
 
-import { todo } from "./todo.js";
+const lists = Lists();
+const myList = List("MyList");
 
-console.log(todo);
+const exampleModal = document.getElementById("exampleModal");
+if (exampleModal) {
+  exampleModal.addEventListener("show.bs.modal", (event) => {
+    // Button that triggered the modal
+    const button = event.relatedTarget;
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute("data-bs-whatever");
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+    const modalTitle = exampleModal.querySelector(".modal-title");
+    const modalBodyInput = exampleModal.querySelector(".modal-body input");
+
+    modalTitle.textContent = `New message to ${recipient}`;
+    modalBodyInput.value = recipient;
+  });
+}
