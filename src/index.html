@@ -64,10 +64,8 @@
             class="accordion-collapse collapse show"
             data-bs-parent="#lists-accordion"
           >
-            <div class="accordion-body">
-              <p>My Tasks</p>
-              <p>List 1</p>
-              <p>List 2</p>
+            <div class="accordion-body p-0">
+              <ul id="lists" class="list-group list-group-flush"></ul>
             </div>
           </div>
         </div>
@@ -209,8 +207,6 @@
     <div
       class="modal fade"
       id="list-modal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
       tabindex="-1"
       aria-labelledby="list-modal-label"
       aria-hidden="true"
@@ -239,20 +235,6 @@
                   id="list-name"
                   required
                 />
-              </div>
-              <div class="mb-3">
-                <label for="list-priority-select" class="col-form-label"
-                  >Select Priority</label
-                >
-                <select
-                  id="list-priority-select"
-                  class="form-select"
-                  aria-label="Default select example"
-                >
-                  <option selected value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
               </div>
             </form>
           </div>

@@ -1,5 +1,5 @@
 // Reset form when user clicks outside of modal, close button and x button.
-import { createList } from "./listController";
+import { createList } from "./lists";
 
 export const createListForm = (function () {
   const listForm = document.querySelector("#list-modal-form");
@@ -7,9 +7,7 @@ export const createListForm = (function () {
     event.preventDefault();
 
     const listName = document.querySelector("#list-name").value;
-    const listPriority = document.querySelector("#list-priority-select").value;
-
-    createList(listName, listPriority);
+    createList(listName); // Create a new list based on the data
 
     listForm.reset();
     document.querySelector("#close-list-modal-btn").click(); // Close Modal

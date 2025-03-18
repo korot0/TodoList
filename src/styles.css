@@ -23,11 +23,16 @@ header {
 
 #sidebar > * {
   margin: 1rem 0;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 #main-content {
   grid-area: main;
+  border-radius: 0.5rem 0 0 0.5rem;
+  background-color: var(--bs-tertiary-bg);
+}
+
+.accordion-body label:hover {
+  cursor: pointer;
 }
 
 .card {
@@ -36,12 +41,11 @@ header {
   margin: 0.5rem;
   max-height: 40rem;
   overflow: auto;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.2s; /* Animation */
 }
 
 .card:hover {
-  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 footer {
