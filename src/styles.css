@@ -5,9 +5,10 @@ body {
 body {
   display: grid;
   grid-template-areas:
-    "header header header"
+    "header main main"
+    "sidebar main main"
     "sidebar main main";
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: 1fr 12fr;
   grid-template-columns: 1fr 3fr 3fr;
   background-color: var(--bs-secondary-bg);
 }
@@ -26,7 +27,6 @@ header {
 
 #main-content {
   grid-area: main;
-  border-radius: 0.5rem 0 0 0;
   background-color: var(--bs-tertiary-bg);
 }
 
@@ -37,10 +37,7 @@ header {
 .card {
   width: 20rem;
   padding: 0;
-  margin: 0.5rem;
-  max-height: 40rem;
   overflow: auto;
-  transition: transform 0.2s; /* Animation */
 }
 
 .card:hover {
