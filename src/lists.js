@@ -45,7 +45,7 @@ const addToArray = (array, element) => {
 // Helper function to remove object from array
 const removeFromArray = (array, listName) => {
   const index = array.findIndex((element) => element.getName() === listName);
-  if (index !== 1) array.splice(index, 1);
+  if (index != 1) array.splice(index, 1);
 };
 
 export const createList = (listName) => {

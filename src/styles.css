@@ -6,9 +6,8 @@ body {
   display: grid;
   grid-template-areas:
     "header header header"
-    "sidebar main main"
-    "footer footer footer";
-  grid-template-rows: 1fr 9fr 1fr;
+    "sidebar main main";
+  grid-template-rows: 1fr 9fr;
   grid-template-columns: 1fr 3fr 3fr;
   background-color: var(--bs-secondary-bg);
 }
@@ -27,7 +26,7 @@ header {
 
 #main-content {
   grid-area: main;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.5rem 0 0 0;
   background-color: var(--bs-tertiary-bg);
 }
 
@@ -46,8 +45,4 @@ header {
 
 .card:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
-
-footer {
-  grid-area: footer;
 }
