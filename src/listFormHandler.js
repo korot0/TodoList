@@ -1,26 +1,21 @@
-// Reset form when user clicks outside of modal, close button and x button.
 import { createList } from "./lists";
 
-export const handleListForm = (function () {
+// Immediately invoked function expression (IIFE)
+export const handleListForm = (() => {
   const listForm = document.querySelector("#list-modal-form");
   listForm.addEventListener("submit", onListFormSubmit);
 })();
 
-function onListFormSubmit(e) {
+const onListFormSubmit = (e) => {
   e.preventDefault();
   createList(getListName());
   resetListForm();
   closeListModal();
-}
+};
 
-function getListName() {
-  return document.querySelector("#list-name").value;
-}
+const getListName = () => document.querySelector("#list-name").value;
 
-function resetListForm() {
-  document.querySelector("#list-modal-form").reset();
-}
+const resetListForm = () => document.querySelector("#list-modal-form").reset();
 
-function closeListModal() {
+const closeListModal = () =>
   document.querySelector("#close-list-modal-btn").click();
-}
