@@ -51,5 +51,5 @@ const removeFromArray = (array, listName) => {
 export const createList = (listName) => {
   const list = List(listName);
   Lists.add(list);
-  renderLists();
+  renderLists(); // Violates SRP?
 };

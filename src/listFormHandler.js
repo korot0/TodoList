@@ -9,12 +9,16 @@ const onListFormSubmit = (e) => {
 
 const getListName = () => document.querySelector("#list-name").value;
 
-const resetListForm = () => document.querySelector("#list-modal-form").reset();
+const resetListForm = () => {
+  document.querySelector("#list-modal-form").reset();
+};
 
-const closeListModal = () =>
+const closeListModal = () => {
   document.querySelector("#close-list-modal-btn").click();
+};
 
 export const handleListForm = (() => {
-  const listForm = document.querySelector("#list-modal-form");
-  listForm.addEventListener("submit", onListFormSubmit);
+  document
+    .querySelector("#list-modal-form")
+    .addEventListener("submit", onListFormSubmit);
 })();
