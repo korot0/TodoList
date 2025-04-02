@@ -1,5 +1,7 @@
 import { Lists } from "./lists";
 
+/* TODO */
+// Doing too many things at once, need to refactor
 const renderList = (name) => {
   // ul element
   const listsContainer = document.querySelector("#lists");
@@ -23,11 +25,5 @@ const renderList = (name) => {
   label.appendChild(span);
 };
 
-// This function currently clears the array the re-renders every time an element is added. Think about how we can keep track of the state so we don't have to re-render.+
-export const renderLists = () => {
-  const listsContainer = document.querySelector("#lists");
-  listsContainer.textContent = "";
-  Lists.getLists().forEach((list) => {
-    renderList(list.getName());
-  });
-};
+/* TODO */
+// Render list

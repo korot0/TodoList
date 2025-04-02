@@ -4,5 +4,10 @@ Things learned so far:
 
 TODO:
 
-- Fix card height
-- Fix "My Lists" width when adding a long title. Ex "Loooooooooooooong"
+- CSS:
+
+  - Fix card height
+  - Fix "My Tasks" width when adding a long title. Ex "Loooooooooooooong"
+
+- JS:
+  - Handle task completed status

@@ -1,10 +1,10 @@
-import { createList } from "./lists";
-
 const onListFormSubmit = (e) => {
   e.preventDefault();
-  createList(getListName());
   resetListForm();
   closeListModal();
+
+  /* TODO */
+  // Add list to lists
 };
 
 const getListName = () => document.querySelector("#list-name").value;
@@ -20,5 +20,5 @@ const closeListModal = () => {
 export const handleListForm = (() => {
   document
     .querySelector("#list-modal-form")
-    .addEventListener("submit", onListFormSubmit);
+    .addEventListener("submit", onListFormSubmit); // call function to handle form submission
 })();
