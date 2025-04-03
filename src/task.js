@@ -8,6 +8,6 @@ export const Task = (title, description, priority, dueDate) => {
   };
 };
 
-const toggleCompleted = (task) => {
-  task.completed ? (task.completed = false) : (task.completed = true);
-};
+// const toggleCompleted = (task) => {
+//   task.completed ? (task.completed = false) : (task.completed = true);
+// };

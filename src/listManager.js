@@ -1,20 +1,28 @@
+import { List } from "./list";
+
 export const ListManager = (() => {
   let lists = [];
 
-  const addList = (list) => {
-    lists.push(list);
+  const addList = (listName) => {
+    if (!isDuplicateList(listName)) {
+      lists.push(List(listName));
+    } else {
+      console.log("List already exists!");
+    }
   };
 
-  const removeList = (list) => {
-    const index = findListIndex(lists, list);
-    removeListAtIndex(lists, index);
+  const removeList = (listName) => {
+    const index = findListIndex(listName);
+    removeListAtIndex(index);
   };
 
-  /* UTILITY FUNCTIONS */
+  /* Private helper methods */
 
-  // @param: listName must be a string, not an object
+  const isDuplicateList = (listName) =>
+    lists.some((list) => list.getName() === listName);
+
   const findListIndex = (listName) =>
-    lists.findIndex((list) => list.getName() == listName);
+    lists.findIndex((list) => list.getName() === listName);
 
   const removeListAtIndex = (index) => {
     if (index !== -1) lists.splice(index, 1);
