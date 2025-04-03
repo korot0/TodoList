@@ -16,7 +16,7 @@ export const ListManager = (() => {
     removeListAtIndex(index);
   };
 
-  /* Private helper methods */
+  /* PRIVATE HELPER METHODS */
 
   const isDuplicateList = (listName) =>
     lists.some((list) => list.getName() === listName);
