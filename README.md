@@ -1,6 +1,8 @@
 Things learned so far:
 
-- Need to put styles.css after bootstrap so we don't run into styling conflicts
+- Need to put styles.css after bootstrap so we don't run into styling conflicts.
+- array.find return will be a copy if it's a primitive, or a reference if it's a complex type.
+- Test function after implementing it, don't make function after function without testing first.
 
 TODO:
 

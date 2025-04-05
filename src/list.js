@@ -2,7 +2,7 @@ import { Task } from "./task";
 
 export const List = (name) => {
   let tasks = [];
-  let completedTasks = [];
+  let completedTasks = []; // Need to work on this later
 
   const addTask = (title, description, priority, dueDate) => {
     if (!isDuplicateTask(title)) {
@@ -16,6 +16,8 @@ export const List = (name) => {
     const index = findTaskIndex(taskTitle);
     removeTaskAtIndex(index);
   };
+
+  const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 
   /* PRIVATE HELPER METHODS */
 
@@ -31,9 +33,10 @@ export const List = (name) => {
   };
 
   return {
-    name,
+    name, // for debugging, delete later
     getName: () => name,
     getTasks: () => tasks,
+    getTask,
     getCompletedTasks: () => completedTasks,
     addTask,
     removeTask,

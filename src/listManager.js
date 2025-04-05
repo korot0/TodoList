@@ -16,6 +16,9 @@ export const ListManager = (() => {
     removeListAtIndex(index);
   };
 
+  const getList = (listName) =>
+    lists.find((list) => list.getName() === listName);
+
   /* PRIVATE HELPER METHODS */
 
   const isDuplicateList = (listName) =>
@@ -29,5 +32,10 @@ export const ListManager = (() => {
     else console.log("Did not find list");
   };
 
-  return { getLists: () => lists, addList, removeList };
+  return {
+    getLists: () => lists,
+    getList,
+    addList,
+    removeList,
+  };
 })();

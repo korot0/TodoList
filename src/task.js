@@ -5,9 +5,6 @@ export const Task = (title, description, priority, dueDate) => {
     description,
     priority,
     dueDate,
+    completed,
   };
 };
-
-// const toggleCompleted = (task) => {
-//   task.completed ? (task.completed = false) : (task.completed = true);
-// };
