@@ -1,10 +1,10 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.preferredLightColorTheme": "Tomorrow Night Blue",
+  "workbench.preferredLightColorTheme": "Night Owl Light (No Italics)",
   "editor.scrollbar.horizontal": "auto",
   "workbench.editor.pinnedTabSizing": "compact",
   "window.density.editorTabHeight": "compact",
   "editor.tabSize": 4,
   "editor.wordWrap": "on",
-  "workbench.preferredDarkColorTheme": "Night Owl Light (No Italics)"
+  "workbench.preferredDarkColorTheme": "Serendipity Sunset"
 }

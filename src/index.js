@@ -11,21 +11,47 @@ window.ListTaskController = ListTaskController;
 window.ListManager = ListManager;
 window.TaskManager = TaskManager;
 
-// ListManager.addList("Homework");
-// ListTaskController.createTask(
-//   "Homework",
-//   "Assignment 2",
-//   "Some description goes here",
-//   "medium",
-//   "01/01/2021"
-// );
-// ListManager.getList("Homework").getTask("Assignment 1");
-// ListManager.getList("Homework").getTask("Assignment 2").title;
+/* TEST */
+
+ListManager.addList("Homework"); // Create Homework list
+
+// Create task for Homework
+ListTaskController.createTask(
+  "Homework",
+  "Assignment 1",
+  "Some description goes here",
+  "medium",
+  "01/01/2021"
+);
+
+// Create another task for Homework
+ListTaskController.createTask(
+  "Homework",
+  "Calc 2 test",
+  "",
+  "high",
+  "04/10/2025"
+);
+
+ListTaskController.createTask("Test", "Calc 2 test", "", "high", "04/10/2025"); // Need to check if list exists
+
+// ListManager.getList("Homework").getTask("Assignment 1"); /* Use on console */
+
+ListManager.getList("Homework").getTask("Assignment 2").title; // Cannot read title bug
+
 // TaskManager.changeTitle(ListManager.getList("Homework").getTask("Assignment 2"), "Assignment 1");
-// ListManager.getList("Homework").getTasks()
+// ListManager.getList("Homework").getTasks();
+// ListTaskController.retrieveTasks("Homework");
 
 /* TODO 
     const toggleCompleted = (task) => {
     task.completed ? (task.completed = false) : (task.completed = true);
     };
+
+    Test:
+        listTaskController
+        list
+        listManager
+        task
+        TaskManager
 */
