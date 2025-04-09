@@ -3,7 +3,7 @@ import { List } from "./list";
 export const ListManager = (() => {
   let lists = [];
 
-  const addList = (listName) => {
+  const createList = (listName) => {
     if (!isDuplicateList(listName)) {
       lists.push(List(listName));
     } else {
@@ -35,7 +35,7 @@ export const ListManager = (() => {
   return {
     getLists: () => lists,
     getList,
-    addList,
+    createList,
     removeList,
   };
 })();

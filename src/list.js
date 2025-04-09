@@ -33,12 +33,11 @@ export const List = (name) => {
   };
 
   return {
-    name, // for debugging, delete later
-    getName: () => name,
-    getTasks: () => tasks,
-    getTask,
-    getCompletedTasks: () => completedTasks,
+    name,
+    tasks,
     addTask,
+    getTask,
     removeTask,
+    getCompletedTasks: () => completedTasks,
   };
 };
