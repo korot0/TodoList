@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  display: grid;
+  grid-template-areas:
+    "header main main"
+    "sidebar main main"
+    "sidebar main main";
+  grid-template-rows: 1fr 12fr;
+  grid-template-columns: 1fr 3fr 3fr;
+  background-color: var(--bs-secondary-bg);
+}
+
+header {
+  grid-area: header;
+}
+
+#sidebar {
+  grid-area: sidebar;
+}
+
+#sidebar > * {
+  margin: 1rem 0;
+}
+
+#main-content {
+  grid-area: main;
+  background-color: var(--bs-tertiary-bg);
+}
+
+.accordion-body label:hover {
+  cursor: pointer;
+}
+
+.card {
+  width: 20rem;
+  padding: 0;
+  overflow: auto;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
