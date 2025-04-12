@@ -48,3 +48,8 @@ export const completeTask = (list, taskTitle) => {
   list.completedTasks.push(task); // Push task to completed tasks
   list.removeTask(task); // Remove task from non-completed tasks
 };
+
+export const restoreTask = (list, taskTitle) => {
+  // Push to tasks and remove from completedTasks
+  toggleTaskCompletion();
+};
