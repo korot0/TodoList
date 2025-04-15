@@ -1,6 +1,6 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.preferredLightColorTheme": "Tomorrow Night Blue",
+  "workbench.preferredLightColorTheme": "Night Owl Light (No Italics)",
   "editor.scrollbar.horizontal": "auto",
   "workbench.editor.pinnedTabSizing": "compact",
   "window.density.editorTabHeight": "compact",

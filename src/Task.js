@@ -8,6 +8,3 @@ export const Task = (title, description, priority, dueDate) => {
     completed,
   };
 };
-
-export const toggleTaskCompletion = (task) =>
-  (task.completed = !task.completed);

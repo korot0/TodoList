@@ -8,19 +8,19 @@ import { completeTask, restoreTask } from "./List";
 window.ListManager = ListManager; // For debugging - delete later
 
 /* TODO
-- Refactor remove methods in listManager and list
-  - Handle task completion and restoration
-    - Make helper function to move tasks between completed and non completed
-    - Filter by:
-    - Due today
-    - Due this week
-    - High priority
-  - Show list on dom on creation
+- Handle task completion and restoration
+  - Make helper function to move tasks between completed and non completed
+  - Filter by:
+  - Due today
+  - Due this week
+  - High priority
+- Show list on dom on creation
 */
 
-ListManager.createList("Homework"); // Create list
-const homework = ListManager.getList("Homework"); // Refer to homework list
-// Add a task to homework
+// Create list
+ListManager.createList("Homework");
+const homework = ListManager.getList("Homework");
+
 homework.addTask(
   "OS - Assignment 4",
   "Make your own heap",
@@ -28,4 +28,9 @@ homework.addTask(
   "4/10/2025"
 );
 
-console.log(ListManager.getLists()); // Print Lists
+homework.addTask(
+  "Discrete Math Homework",
+  "Some counting",
+  "medium",
+  "4/16/2025"
+);
