@@ -24,20 +24,3 @@ homework.addTask(
   "medium",
   "4/20/2025"
 );
-
-homework.addTask(
-  "OS - Assignment 4",
-  "Make your own heap",
-  "high",
-  "4/10/2025"
-);
-
-console.log("Tasks: ");
-console.log(homework.tasks);
-console.log("Completed Tasks: ");
-console.log(homework.completedTasks);
-
-const someTask = homework.getTask("Discrete Math Hw");
-
-homework.markTaskCompleted(someTask);
-homework.restoreTask(someTask);
