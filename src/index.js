@@ -3,23 +3,27 @@ import "./styles.css";
 import { accordion, modal } from "bootstrap"; // Needed to use those bootstrap components
 import { handleListForm } from "./ListFormHandler"; // Needed to import handleListForm IIFE
 import { ListManager } from "./ListManager";
-import { completeTask, restoreTask } from "./List";
 
 window.ListManager = ListManager; // For debugging - delete later
 
 /* TODO
-- Handle task completion and restoration
-  - Make helper function to move tasks between completed and non completed
-  - Filter by:
+- date-fns
+- Filter by: (print in console for now)
   - Due today
   - Due this week
   - High priority
-- Show list on dom on creation
 */
 
 // Create list
 ListManager.createList("Homework");
 const homework = ListManager.getList("Homework");
+
+homework.addTask(
+  "Discrete Math Hw",
+  "Finish lesson 18 homework",
+  "medium",
+  "4/20/2025"
+);
 
 homework.addTask(
   "OS - Assignment 4",
@@ -28,9 +32,11 @@ homework.addTask(
   "4/10/2025"
 );
 
-homework.addTask(
-  "Discrete Math Homework",
-  "Some counting",
-  "medium",
-  "4/16/2025"
-);
+console.log("Tasks: ");
+console.log(homework.tasks);
+console.log("Completed Tasks: ");
+console.log(homework.completedTasks);
+
+const someTask = homework.getTask("Discrete Math Hw");
+// homework.toggleTaskCompletion(someTask); // should remove task from tasks
+// homework.toggleTaskCompletion(someTask); // should remove task from completedTasks

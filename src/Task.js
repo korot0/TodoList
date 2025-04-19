@@ -1,10 +1,10 @@
 export const Task = (title, description, priority, dueDate) => {
-  let completed = false;
   return {
     title,
     description,
     priority,
     dueDate,
-    completed,
+    completed: false,
+    updateCompleted: () => (completed = !completed),
   };
 };
