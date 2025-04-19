@@ -10,13 +10,20 @@ export const List = (name) => {
     else console.log("Task already exists!");
   };
 
-  const toggleTaskCompletion = (task) => {
-    moveTask(task);
-    task.completed = !task.completed; // Change task completed to true or false
-  };
-
   const removeTask = (taskTitle) => {
     tasks = tasks.filter((task) => task.title !== taskTitle);
+  };
+
+  const markTaskCompleted = (task) => {
+    task.completed = true;
+    tasks = tasks.filter((t) => t.title !== task.title);
+    completedTasks.push(task);
+  };
+
+  const restoreTask = (task) => {
+    task.completed = false;
+    completedTasks = completedTasks.filter((t) => t.title !== task.title);
+    tasks.push(task);
   };
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
@@ -25,26 +32,14 @@ export const List = (name) => {
   const isDuplicateTask = (taskTitle) =>
     tasks.some((task) => task.title === taskTitle);
 
-  const moveTask = (task) => {
-    const taskTitle = task.title;
-    if (task.completed === false) {
-      completedTasks.push(task);
-      removeTask(taskTitle);
-    } else {
-      tasks.push(task);
-      completedTasks = completedTasks.filter(
-        (task) => task.title !== taskTitle
-      );
-    }
-  };
-
   return {
     name,
     tasks,
     completedTasks,
     addTask,
     getTask,
-    toggleTaskCompletion,
     removeTask,
+    markTaskCompleted,
+    restoreTask,
   };
 };

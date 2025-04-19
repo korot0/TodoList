@@ -5,6 +5,5 @@ export const Task = (title, description, priority, dueDate) => {
     priority,
     dueDate,
     completed: false,
-    updateCompleted: () => (completed = !completed),
   };
 };

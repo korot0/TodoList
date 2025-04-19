@@ -38,5 +38,6 @@ console.log("Completed Tasks: ");
 console.log(homework.completedTasks);
 
 const someTask = homework.getTask("Discrete Math Hw");
-// homework.toggleTaskCompletion(someTask); // should remove task from tasks
-// homework.toggleTaskCompletion(someTask); // should remove task from completedTasks
+
+homework.markTaskCompleted(someTask);
+homework.restoreTask(someTask);
