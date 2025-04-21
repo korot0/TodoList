@@ -11,8 +11,8 @@ window.ListManager = ListManager; // For debugging - delete later
 /* TODO
 - date-fns
 - Filter by: (print in console for now)
-  - Due today
   - Due tomorrow
+  - Due past
   - Due this week
 */
 
@@ -23,14 +23,14 @@ homework.addTask(
   "Discrete Math Hw",
   "Have 3 homeworks due tomorrow as well! HELP",
   "medium",
-  "2025-03-22"
+  "2025-04-21"
 );
 
 homework.addTask(
   "Calc 2 Hw",
   "Have 3 homeworks due tomorrow!",
   "high",
-  "2025-03-22"
+  "2025-04-21"
 );
 
 ListManager.createList("My Tasks");
@@ -40,10 +40,11 @@ myTasks.addTask(
   "Make dentist appointment",
   "Have to bought flies too, I am cooked",
   "high",
-  "2025-04-03"
+  "2025-04-21"
 );
 
-myTasks.addTask("Clean house", "It's very dirty", "high", "");
+myTasks.addTask("Clean house", "It's very dirty", "high", "2025-04-05");
 
 const lists = ListManager.getLists();
-console.log(TaskFilters.filterByHighPriority(lists));
+// console.log(TaskFilters.filterByHighPriority(lists));
+console.log(TaskFilters.filterByByDueToday(lists));
