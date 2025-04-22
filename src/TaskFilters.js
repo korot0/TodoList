@@ -1,4 +1,4 @@
-import { isToday } from "date-fns";
+import { isToday, isTomorrow, isThisWeek } from "date-fns";
 
 export const TaskFilters = (() => {
   const filterByHighPriority = (lists) => {
@@ -16,11 +16,24 @@ export const TaskFilters = (() => {
   };
 
   const filterByDueTomorrow = (lists) => {
-    lists.forEach((list) => {});
+    lists.forEach((list) => {
+      console.log(list.name + " filtered by due tomorrow" + ": ");
+      console.log(list.tasks.filter((task) => isTomorrow(task.dueDate)));
+    });
   };
 
   const filterByDueThisWeek = (lists) => {
-    lists.forEach((list) => {});
+    lists.forEach((list) => {
+      console.log(list.name + " filtered by due this week" + ": ");
+      console.log(list.tasks.filter((task) => isThisWeek(task.dueDate)));
+    });
+  };
+
+  const filterByPastDue = (lists) => {
+    lists.forEach((list) => {
+      console.log(list.name + " filtered by past due" + ": ");
+      // console.log(list.tasks.filter((task) => isThisWeek(task.dueDate)));
+    });
   };
 
   return {
@@ -28,5 +41,6 @@ export const TaskFilters = (() => {
     filterByByDueToday,
     filterByDueTomorrow,
     filterByDueThisWeek,
+    filterByPastDue,
   };
 })();
