@@ -23,7 +23,7 @@ homework.addTask(
   "Discrete Math Hw",
   "Have 3 homeworks due tomorrow as well! HELP",
   "medium",
-  "2025-04-23"
+  "2025-04-21"
 );
 
 homework.addTask(
@@ -40,11 +40,11 @@ myTasks.addTask(
   "Make dentist appointment",
   "Have to buy flies too, I am cooked",
   "high",
-  "2025-04-22"
+  "2025-04-21"
 );
 
 myTasks.addTask("Clean house", "It's very dirty", "high", "2025-04-05");
 
 const lists = ListManager.getLists();
 
-// console.log(TaskFilters.filterByPastDue(lists));
+console.log(TaskFilters.filterByPastDue(lists));

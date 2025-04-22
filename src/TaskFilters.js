@@ -1,4 +1,10 @@
-import { isToday, isTomorrow, isThisWeek } from "date-fns";
+import {
+  isToday,
+  isTomorrow,
+  isThisWeek,
+  startOfDay,
+  isBefore,
+} from "date-fns";
 
 export const TaskFilters = (() => {
   const filterByHighPriority = (lists) => {
@@ -30,9 +36,10 @@ export const TaskFilters = (() => {
   };
 
   const filterByPastDue = (lists) => {
+    const today = startOfDay(new Date());
     lists.forEach((list) => {
       console.log(list.name + " filtered by past due" + ": ");
-      // console.log(list.tasks.filter((task) => isThisWeek(task.dueDate)));
+      console.log(list.tasks.filter((task) => isBefore(task.dueDate, today)));
     });
   };
 
