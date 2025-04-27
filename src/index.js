@@ -1,22 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import { accordion, modal } from "bootstrap"; // Needed to use those bootstrap components
-
-import { handleListForm } from "./ListFormHandler"; // Needed to import handleListForm IIFE
+import { accordion, modal } from "bootstrap";
+import { handleListForm } from "./ListFormHandler";
+import { handleTaskForm } from "./TaskFormHandler";
 import { ListManager } from "./ListManager";
 import { TaskFilters } from "./TaskFilters";
 
 window.ListManager = ListManager; // For debugging - delete later
-
-ListManager.createList("Homework");
-const homework = ListManager.getList("Homework");
-
-homework.addTask(
-  "Discrete Math Hw",
-  "Have 3 homeworks due tomorrow as well! HELP",
-  "medium",
-  "2025-04-21"
-);
 
 ListManager.createList("My Tasks");
 const myTasks = ListManager.getList("My Tasks");

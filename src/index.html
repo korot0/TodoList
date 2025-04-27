@@ -104,24 +104,12 @@
                 >Walk the dogs</label
               >
             </li>
-            <li class="list-group-item">Go to the gym</li>
             <li class="list-group-item list-group-item-warning">
               Wash the dishes
             </li>
-            <li class="list-group-item">Do the bed</li>
-            <li class="list-group-item">Store winter clothes</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h5 class="card-header">Homework</h5>
-          <ul class="list-group list-group-flush">
             <li class="list-group-item list-group-item-danger">
-              Operating Systems HW 3
+              Store winter clothes
             </li>
-            <li class="list-group-item list-group-item-danger">
-              Discrete Math HW 11 and 12
-            </li>
-            <li class="list-group-item">FAFSA</li>
           </ul>
         </div>
       </div>
@@ -146,46 +134,58 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="task-modal-form">
               <div class="mb-3">
                 <label for="task-title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="task-title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="task-title"
+                  required
+                />
               </div>
               <div class="mb-3">
-                <label for="description" class="col-form-label"
+                <label for="task-description" class="col-form-label"
                   >Description</label
                 >
-                <textarea class="form-control" id="description"></textarea>
+                <textarea class="form-control" id="task-description"></textarea>
               </div>
               <div class="mb-3">
                 <label for="Priority-Select" class="col-form-label"
                   >Priority</label
                 >
                 <select
-                  id="taskPrioritySelection"
+                  id="task-priority-select"
                   class="form-select"
                   aria-label="Default select example"
                 >
                   <option selected value="low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </select>
               </div>
               <div class="mb-3">
-                <label for="date" class="pe-2">Due Date</label>
-                <input type="date" id="date" min="" max="" name="" value="" />
+                <label for="task-due-date" class="pe-2">Due Date</label>
+                <input
+                  type="date"
+                  id="task-due-date"
+                  min=""
+                  max=""
+                  name=""
+                  value=""
+                />
               </div>
 
               <div class="mb-3">
-                <label for="List-Select" class="col-form-label"
+                <label for="list-select" class="col-form-label"
                   >Add to List</label
                 >
                 <select
-                  id="List-Select"
+                  id="list-select"
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected>My Tasks</option>
+                  <option selected value="My Tasks">My Tasks</option>
                   <option value="1">List 1</option>
                   <option value="2">List 2</option>
                 </select>
@@ -194,13 +194,19 @@
           </div>
           <div class="modal-footer">
             <button
+              id="close-task-modal-btn"
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Create"
+              form="task-modal-form"
+            />
           </div>
         </div>
       </div>
