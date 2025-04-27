@@ -16,7 +16,7 @@ export const ListManager = (() => {
 
   /* PRIVATE HELPER METHODS */
   const isDuplicateList = (listName) =>
-    lists.some((list) => list.name === listName);
+    lists.some((list) => list.name === listName.toLowerCase());
 
   return {
     getLists: () => lists,

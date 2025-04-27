@@ -1,13 +1,22 @@
+import { ListManager } from "./ListManager";
+
 const onListFormSubmit = (e) => {
   e.preventDefault();
-  resetListForm();
-  closeListModal();
+  submitList();
+  resetModal();
+};
 
-  /* TODO */
-  // Add list to lists
+const submitList = () => {
+  const name = getListName();
+  ListManager.createList(name);
 };
 
 const getListName = () => document.querySelector("#list-name").value;
+
+const resetModal = () => {
+  resetListForm();
+  closeListModal();
+};
 
 const resetListForm = () => {
   document.querySelector("#list-modal-form").reset();
@@ -20,5 +29,5 @@ const closeListModal = () => {
 export const handleListForm = (() => {
   document
     .querySelector("#list-modal-form")
-    .addEventListener("submit", onListFormSubmit); // call function to handle form submission
+    .addEventListener("submit", onListFormSubmit);
 })();

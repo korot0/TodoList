@@ -29,7 +29,7 @@ export const List = (name) => {
 
   /* PRIVATE HELPER METHODS */
   const isDuplicateTask = (taskTitle) =>
-    tasks.some((task) => task.title === taskTitle);
+    tasks.some((task) => task.title == taskTitle);
 
   return {
     name,
