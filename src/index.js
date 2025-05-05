@@ -15,8 +15,22 @@ myTasks.addTask(
   "Make dentist appointment",
   "Have to buy flights too, I am cooked",
   "high",
-  "2025-04-21"
+  "2025-05-26"
 );
+
+myTasks.addTask(
+  "List Chair",
+  "Check the price online and list it already!",
+  "medium",
+  "2025-05-10"
+);
+
+ListManager.createList("School");
+const school = ListManager.getList("School");
+
+// Debugging
+import { renderCards } from "./ListUI";
+renderCards();
 
 // const lists = ListManager.getLists();
 // console.log(TaskFilters.filterByPastDue(lists));
