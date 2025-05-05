@@ -7,38 +7,18 @@ const onTaskFormSubmit = (e) => {
 };
 
 const submitTask = () => {
-  const title = getTaskTitle();
-  const description = getTaskDescription();
-  const priority = getTaskPriority();
-  const dueDate = getTaskDueDate();
+  const title = document.querySelector("#task-title").value;
+  const description = document.querySelector("#task-description").value;
+  const priority = document.querySelector("#task-priority-select").value;
+  const dueDate = document.querySelector("#task-due-date").value;
 
-  const targetList = getTargetListName();
+  const targetList = document.querySelector("#list-select").value;
   const list = ListManager.getList(targetList);
   list.addTask(title, description, priority, dueDate);
 };
 
-const getTaskTitle = () => document.querySelector("#task-title").value;
-
-const getTaskDescription = () =>
-  document.querySelector("#task-description").value;
-
-const getTaskPriority = () =>
-  document.querySelector("#task-priority-select").value;
-
-const getTaskDueDate = () => document.querySelector("#task-due-date").value;
-
-const getTargetListName = () => document.querySelector("#list-select").value;
-
 const resetTaskModal = () => {
-  resetTaskForm();
-  closeTaskModal();
-};
-
-const resetTaskForm = () => {
   document.querySelector("#task-modal-form").reset();
-};
-
-const closeTaskModal = () => {
   document.querySelector("#close-task-modal-btn").click();
 };
 

@@ -7,22 +7,12 @@ const onListFormSubmit = (e) => {
 };
 
 const submitList = () => {
-  const name = getListName();
+  const name = document.querySelector("#list-name").value;
   ListManager.createList(name);
 };
 
-const getListName = () => document.querySelector("#list-name").value;
-
 const resetModal = () => {
-  resetListForm();
-  closeListModal();
-};
-
-const resetListForm = () => {
   document.querySelector("#list-modal-form").reset();
-};
-
-const closeListModal = () => {
   document.querySelector("#close-list-modal-btn").click();
 };
 
