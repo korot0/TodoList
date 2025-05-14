@@ -38,4 +38,5 @@ const createTaskElement = (taskTitle, taskPriority) => {
 const assignPriorityClass = (priority) => {
   if (priority === "medium") return "list-group-item-warning";
   if (priority === "high") return "list-group-item-danger";
+  // "list-group-item-success" for green
 };
