@@ -1,14 +1,10 @@
-import { ListManager } from "./ListManager";
+// Might need to refactor the way html ids are being created
 
-export const renderTasks = () => {
-  const tasksContainer = document.querySelector(".tasks-container");
-  const lists = ListManager.getLists();
-  lists.forEach((list) => {
-    const tasks = list.tasks;
-    tasks.forEach((task) => {
-      const taskEl = createTaskElement(task.title, task.priority);
-      tasksContainer.appendChild(taskEl);
-    });
+export const renderTasks = (list, parent) => {
+  const tasks = list.tasks;
+  tasks.forEach((task) => {
+    const taskEl = createTaskElement(task.title, task.priority);
+    parent.appendChild(taskEl);
   });
 };
 
@@ -21,12 +17,11 @@ const createTaskElement = (taskTitle, taskPriority) => {
   input.classList.add("form-check-input");
   input.type = "checkbox";
   input.value = "";
-  input.id = taskTitle;
+  input.id = taskTitle.replace(/\s+/g, "-");
 
   const label = document.createElement("label");
   label.classList.add("ms-2");
-  label.htmlFor = "form-check-label"; // is this needed?
-  label.htmlFor = taskTitle;
+  label.htmlFor = input.id;
   label.textContent = taskTitle;
 
   li.appendChild(input);

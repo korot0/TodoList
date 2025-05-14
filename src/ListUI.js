@@ -1,4 +1,8 @@
 import { ListManager } from "./ListManager";
+import { renderTasks } from "./TaskUI";
+
+// Might need to refactor the way html ids are being created
+// Might be breaking SRP because of how ids are being handled
 
 export const renderCards = () => {
   const cardContainer = document.querySelector("#card-container");
@@ -6,6 +10,9 @@ export const renderCards = () => {
   lists.forEach((list) => {
     const card = createListCardElement(list.name);
     cardContainer.appendChild(card);
+    const ulParentID = `${list.name.replace(/\s+/g, "-")}-ul`;
+    const ulParent = document.querySelector(`#${ulParentID}`);
+    renderTasks(list, ulParent);
   });
 };
 
@@ -18,7 +25,8 @@ const createListCardElement = (listName) => {
   h5.classList.add("card-header");
 
   const ul = document.createElement("ul");
-  ul.classList.add("list-group", "list-group-flush", "tasks-container");
+  ul.classList.add("list-group", "list-group-flush");
+  ul.id = `${listName.replace(/\s+/g, "-")}-ul`;
 
   div.appendChild(h5);
   div.appendChild(ul);
@@ -43,11 +51,11 @@ const createListAccordionElement = (listName) => {
   checkBoxInput.classList.add("form-check-input", "me-1");
   checkBoxInput.type = "checkbox";
   checkBoxInput.value = "";
-  checkBoxInput.id = listName;
+  checkBoxInput.id = `${listName.replace(/\s+/g, "-")}-checkbox`;
 
   const checkBoxLabel = document.createElement("label");
   checkBoxLabel.classList.add("form-check-label", "stretched-link");
-  checkBoxLabel.htmlFor = listName;
+  checkBoxLabel.htmlFor = checkBoxInput.id;
   checkBoxLabel.textContent = listName;
 
   li.appendChild(checkBoxInput);
