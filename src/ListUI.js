@@ -18,7 +18,7 @@ const createListCardElement = (listName) => {
   h5.classList.add("card-header");
 
   const ul = document.createElement("ul");
-  ul.classList.add("list-group", "list-group-flush");
+  ul.classList.add("list-group", "list-group-flush", "tasks-container");
 
   div.appendChild(h5);
   div.appendChild(ul);
