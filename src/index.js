@@ -8,29 +8,22 @@ import { TaskFilters } from "./TaskFilters";
 
 window.ListManager = ListManager; // For debugging - delete later
 
-ListManager.createList("My Tasks");
-const myTasks = ListManager.getList("My Tasks");
-
-myTasks.addTask(
-  "Make dentist appointment",
-  "Have to buy flights too, I am cooked",
-  "high",
-  "2025-05-26"
-);
-
-myTasks.addTask(
-  "List Chair",
-  "Check the price online and list it already!",
-  "medium",
-  "2025-05-10"
-);
-
 ListManager.createList("School");
 const school = ListManager.getList("School");
 
+school.addTask(
+  "Study for discrete math",
+  "You don't have to study as hard",
+  "low",
+  "2025-05-08"
+);
+
+ListManager.createList("Work");
+
 // Debugging
-import { renderCards } from "./ListUI";
+import { renderAccordion, renderCards } from "./ListUI";
 renderCards();
+renderAccordion();
 
 // const lists = ListManager.getLists();
 // console.log(TaskFilters.filterByPastDue(lists));
