@@ -6,15 +6,16 @@ export const renderTasks = () => {
   lists.forEach((list) => {
     const tasks = list.tasks;
     tasks.forEach((task) => {
-      const taskEl = createTaskElement(task.title);
+      const taskEl = createTaskElement(task.title, task.priority);
       tasksContainer.appendChild(taskEl);
     });
   });
 };
 
-const createTaskElement = (taskTitle) => {
+const createTaskElement = (taskTitle, taskPriority) => {
   const li = document.createElement("li");
-  li.classList.add("list-group-item");
+  const priority = assignPriorityClass(taskPriority);
+  li.classList.add("list-group-item", priority);
 
   const input = document.createElement("input");
   input.classList.add("form-check-input");
@@ -32,4 +33,9 @@ const createTaskElement = (taskTitle) => {
   li.appendChild(label);
 
   return li;
+};
+
+const assignPriorityClass = (priority) => {
+  if (priority === "medium") return "list-group-item-warning";
+  if (priority === "high") return "list-group-item-danger";
 };

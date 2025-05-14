@@ -28,6 +28,3 @@ import { renderTasks } from "./TaskUI";
 renderCards();
 renderAccordion();
 renderTasks();
-
-// const lists = ListManager.getLists();
-// console.log(TaskFilters.filterByPastDue(lists));
