@@ -33,5 +33,5 @@ school.addTask(
 
 // Debugging
 import { renderAccordion, renderCards } from "./ListUI";
-renderCards();
 renderAccordion();
+renderCards();

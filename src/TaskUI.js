@@ -1,8 +1,5 @@
-// Might need to refactor the way html ids are being created
-
 export const renderTasks = (list, parent) => {
-  const tasks = list.tasks;
-  tasks.forEach((task) => {
+  list.tasks.forEach((task) => {
     const taskEl = createTaskElement(task.title, task.priority);
     parent.appendChild(taskEl);
   });
@@ -10,14 +7,14 @@ export const renderTasks = (list, parent) => {
 
 const createTaskElement = (taskTitle, taskPriority) => {
   const li = document.createElement("li");
-  const priority = assignPriorityClass(taskPriority);
-  li.classList.add("list-group-item", priority);
+  const priorityStyle = stylePriority(taskPriority);
+  li.classList.add("list-group-item", priorityStyle);
 
   const input = document.createElement("input");
   input.classList.add("form-check-input");
   input.type = "checkbox";
   input.value = "";
-  input.id = taskTitle.replace(/\s+/g, "-");
+  input.id = taskTitle.replace(/\s+/g, "-"); // Need to replace whitespaces with dashes for proper html ids
 
   const label = document.createElement("label");
   label.classList.add("ms-2");
@@ -26,11 +23,10 @@ const createTaskElement = (taskTitle, taskPriority) => {
 
   li.appendChild(input);
   li.appendChild(label);
-
   return li;
 };
 
-const assignPriorityClass = (priority) => {
+const stylePriority = (priority) => {
   if (priority === "medium") return "list-group-item-warning";
   if (priority === "high") return "list-group-item-danger";
   // "list-group-item-success" for green

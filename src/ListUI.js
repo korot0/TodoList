@@ -1,15 +1,14 @@
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 
-// Might need to refactor the way html ids are being created
-// Might be breaking SRP because of how ids are being handled
-
 export const renderCards = () => {
   const cardContainer = document.querySelector("#card-container");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
     const card = createListCardElement(list.name);
     cardContainer.appendChild(card);
+    /* Replace the whitespaces with dashes and add -ul at the end.
+    This helps us look for the appropriate parent id so we can append the list. */
     const ulParentID = `${list.name.replace(/\s+/g, "-")}-ul`;
     const ulParent = document.querySelector(`#${ulParentID}`);
     renderTasks(list, ulParent);
@@ -26,11 +25,10 @@ const createListCardElement = (listName) => {
 
   const ul = document.createElement("ul");
   ul.classList.add("list-group", "list-group-flush");
-  ul.id = `${listName.replace(/\s+/g, "-")}-ul`;
+  ul.id = `${listName.replace(/\s+/g, "-")}-ul`; // Need to replace whitespaces with dashes for proper html ids. We also add -ul at the end so we don't override the ids generated from createTaskElement in TaskUI.js
 
   div.appendChild(h5);
   div.appendChild(ul);
-
   return div;
 };
 
@@ -60,6 +58,5 @@ const createListAccordionElement = (listName) => {
 
   li.appendChild(checkBoxInput);
   li.appendChild(checkBoxLabel);
-
   return li;
 };
