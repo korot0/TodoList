@@ -61,7 +61,10 @@ const createListAccordionElement = (listName) => {
   return li;
 };
 
+// Need to render lists in dropdown form from create task similarly to how we render lists in accordion, then store the list value so we can pass it as an argument when creating the task
+
 export const resetListsUI = () => {
   document.querySelector("#card-container").textContent = "";
   document.querySelector("#lists-accordion-body").textContent = "";
+  // Add to List form clear
 };

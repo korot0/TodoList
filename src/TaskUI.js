@@ -31,3 +31,7 @@ const stylePriority = (priority) => {
   if (priority === "high") return "list-group-item-danger";
   // "list-group-item-success" for green
 };
+
+// export const resetTasksUI = () => {
+//   document.querySelector().textContent = "";
+// };
