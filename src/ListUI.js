@@ -60,3 +60,8 @@ const createListAccordionElement = (listName) => {
   li.appendChild(checkBoxLabel);
   return li;
 };
+
+export const resetListsUI = () => {
+  document.querySelector("#card-container").textContent = "";
+  document.querySelector("#lists-accordion-body").textContent = "";
+};
