@@ -5,6 +5,7 @@ export const renderTasks = (list, parent) => {
   });
 };
 
+// split element creation into different functions?
 const createTaskElement = (taskTitle, taskPriority) => {
   const li = document.createElement("li");
   const priorityStyle = stylePriority(taskPriority);
@@ -21,9 +22,19 @@ const createTaskElement = (taskTitle, taskPriority) => {
   label.htmlFor = input.id;
   label.textContent = taskTitle;
 
+  const deleteIcon = createDeleteIcon();
+
   li.appendChild(input);
   li.appendChild(label);
+  li.appendChild(deleteIcon);
   return li;
+};
+
+const createDeleteIcon = () => {
+  const button = document.createElement("button");
+  button.classList.add("material-symbols-outlined", "hide");
+  button.textContent = "delete";
+  return button;
 };
 
 const stylePriority = (priority) => {
