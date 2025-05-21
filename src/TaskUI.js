@@ -32,6 +32,6 @@ const stylePriority = (priority) => {
   // "list-group-item-success" for green
 };
 
-// export const resetTasksUI = () => {
-//   document.querySelector().textContent = "";
-// };
+export const resetTasksUI = () => {
+  document.querySelector().textContent = "";
+};

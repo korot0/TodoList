@@ -1,10 +1,23 @@
 import { ListManager } from "./ListManager";
+import {
+  renderCards,
+  renderListsAccordion,
+  renderSelectListsAccordion,
+  resetListsUI,
+} from "./ListUI";
 
+// Repeating with onListFormSubmit
 const onTaskFormSubmit = (e) => {
   e.preventDefault();
   submitTask();
 
+  // resetTasksUI();
   resetTaskModal();
+  resetListsUI();
+
+  renderSelectListsAccordion();
+  renderListsAccordion();
+  renderCards();
 };
 
 const submitTask = () => {
