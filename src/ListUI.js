@@ -32,6 +32,9 @@ const createListCardElement = (listName) => {
   return div;
 };
 
+/* TODO */
+// Description and date
+
 export const renderListsAccordion = () => {
   const accordion = document.querySelector("#lists-accordion-body");
   const lists = ListManager.getLists();

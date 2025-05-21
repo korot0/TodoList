@@ -9,6 +9,7 @@ TODO:
 
 - CSS:
 
+  - Make font smaller
   - Fix card height
   - Fix "My Tasks" width when adding a long title. Ex "Loooooooooooooong"
   - Fix list accordion items margins
