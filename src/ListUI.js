@@ -25,14 +25,14 @@ const createListCardElement = (listName) => {
 
   const ul = document.createElement("ul");
   ul.classList.add("list-group", "list-group-flush");
-  ul.id = `${listName.replace(/\s+/g, "-")}-ul`; // Need to replace whitespaces with dashes for proper html ids. We also add -ul at the end so we don't override the ids generated from createTaskElement in TaskUI.js
+  ul.id = `${listName.replace(/\s+/g, "-")}-ul`; // This regex replaces whitespaces with dashes for proper html ids. We also add -ul at the end so we don't override the ids generated from createTaskElement in TaskUI.js
 
   div.appendChild(h5);
   div.appendChild(ul);
   return div;
 };
 
-export const renderAccordion = () => {
+export const renderListsAccordion = () => {
   const accordion = document.querySelector("#lists-accordion-body");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
@@ -61,10 +61,24 @@ const createListAccordionElement = (listName) => {
   return li;
 };
 
-// Need to render lists in dropdown form from create task similarly to how we render lists in accordion, then store the list value so we can pass it as an argument when creating the task
+export const renderSelectListsAccordion = () => {
+  const container = document.querySelector("#list-select-container");
+  const lists = ListManager.getLists();
+  lists.forEach((list) => {
+    const optionEl = createSelectListElement(list.name);
+    container.appendChild(optionEl);
+  });
+};
+
+const createSelectListElement = (listName) => {
+  const option = document.createElement("option");
+  option.value = listName;
+  option.textContent = listName;
+  return option;
+};
 
 export const resetListsUI = () => {
   document.querySelector("#card-container").textContent = "";
   document.querySelector("#lists-accordion-body").textContent = "";
-  // Add to List form clear
+  document.querySelector("#list-select-container").textContent = "";
 };

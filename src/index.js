@@ -32,6 +32,11 @@ school.addTask(
 );
 
 // Debugging
-import { renderAccordion, renderCards } from "./ListUI";
-renderAccordion();
+import {
+  renderListsAccordion,
+  renderCards,
+  renderSelectListsAccordion,
+} from "./ListUI";
+renderListsAccordion();
+renderSelectListsAccordion();
 renderCards();

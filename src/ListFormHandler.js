@@ -1,13 +1,19 @@
 import { ListManager } from "./ListManager";
-import { renderAccordion, renderCards, resetListsUI } from "./ListUI";
+import {
+  renderListsAccordion,
+  renderCards,
+  resetListsUI,
+  renderSelectListsAccordion,
+} from "./ListUI";
 
-// Not srp compliant? might need to split
+// Not srp compliant? might need to split, currently calling too many functions
 const onListFormSubmit = (e) => {
   e.preventDefault();
   submitList();
   resetModal();
   resetListsUI();
-  renderAccordion();
+  renderListsAccordion();
+  renderSelectListsAccordion();
   renderCards();
 };
 
