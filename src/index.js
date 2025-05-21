@@ -38,5 +38,5 @@ import {
   renderSelectListsAccordion,
 } from "./ListUI";
 renderListsAccordion();
-renderSelectListsAccordion();
 renderCards();
+renderSelectListsAccordion();

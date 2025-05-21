@@ -3,6 +3,7 @@ import { ListManager } from "./ListManager";
 const onTaskFormSubmit = (e) => {
   e.preventDefault();
   submitTask();
+
   resetTaskModal();
 };
 
@@ -12,7 +13,7 @@ const submitTask = () => {
   const priority = document.querySelector("#task-priority-select").value;
   const dueDate = document.querySelector("#task-due-date").value;
 
-  const targetList = document.querySelector("#list-select").value;
+  const targetList = document.querySelector("#list-select-container").value;
   const list = ListManager.getList(targetList);
   list.addTask(title, description, priority, dueDate);
 };

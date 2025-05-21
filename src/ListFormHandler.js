@@ -10,10 +10,12 @@ import {
 const onListFormSubmit = (e) => {
   e.preventDefault();
   submitList();
+
   resetModal();
   resetListsUI();
-  renderListsAccordion();
+
   renderSelectListsAccordion();
+  renderListsAccordion();
   renderCards();
 };
 

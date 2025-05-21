@@ -14,7 +14,7 @@ const createTaskElement = (taskTitle, taskPriority) => {
   input.classList.add("form-check-input");
   input.type = "checkbox";
   input.value = "";
-  input.id = taskTitle.replace(/\s+/g, "-"); // Need to replace whitespaces with dashes for proper html ids
+  input.id = taskTitle.replace(/\s+/g, "-"); // This regex replaces whitespaces with dashes for proper html ids
 
   const label = document.createElement("label");
   label.classList.add("ms-2");
