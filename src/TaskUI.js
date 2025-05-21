@@ -24,9 +24,7 @@ const createTaskElement = (taskTitle, taskPriority) => {
 
   const deleteIcon = createDeleteIcon();
 
-  li.appendChild(input);
-  li.appendChild(label);
-  li.appendChild(deleteIcon);
+  li.append(input, label, deleteIcon);
   return li;
 };
 

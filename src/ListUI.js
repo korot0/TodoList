@@ -27,8 +27,7 @@ const createListCardElement = (listName) => {
   ul.classList.add("list-group", "list-group-flush");
   ul.id = `${listName.replace(/\s+/g, "-")}-ul`; // This regex replaces whitespaces with dashes for proper html ids. We also add -ul at the end so we don't override the ids generated from createTaskElement in TaskUI.js
 
-  div.appendChild(h5);
-  div.appendChild(ul);
+  div.append(h5, ul);
   return div;
 };
 
@@ -59,8 +58,7 @@ const createListAccordionElement = (listName) => {
   checkBoxLabel.htmlFor = checkBoxInput.id;
   checkBoxLabel.textContent = listName;
 
-  li.appendChild(checkBoxInput);
-  li.appendChild(checkBoxLabel);
+  li.append(checkBoxInput, checkBoxLabel);
   return li;
 };
 
