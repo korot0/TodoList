@@ -15,7 +15,6 @@ export const List = (name) => {
 
   const removeTask = (taskTitle) => {
     tasks = tasks.filter((t) => t.title !== taskTitle);
-    console.log(tasks);
   };
 
   const markTaskCompleted = (task) => {
