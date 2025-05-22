@@ -4,9 +4,10 @@ import { accordion, modal } from "bootstrap";
 import { handleListForm } from "./ListFormHandler";
 import { handleTaskForm } from "./TaskFormHandler";
 import { ListManager } from "./ListManager";
-import { TaskFilters } from "./TaskFilters";
+import { updateScreen } from "./UpdateScreen";
 
-window.ListManager = ListManager; // For debugging - delete later
+// For debugging - delete later
+window.ListManager = ListManager;
 
 ListManager.createList("My Tasks");
 const myTasks = ListManager.getList("My Tasks");
@@ -31,12 +32,4 @@ school.addTask(
   "2025-05-14"
 );
 
-// Debugging
-import {
-  renderListsAccordion,
-  renderCards,
-  renderSelectListsAccordion,
-} from "./ListUI";
-renderListsAccordion();
-renderCards();
-renderSelectListsAccordion();
+updateScreen();

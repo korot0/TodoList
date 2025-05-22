@@ -5,7 +5,6 @@ export const renderTasks = (list, parent) => {
   });
 };
 
-// split element creation into different functions?
 const createTaskElement = (taskTitle, taskPriority) => {
   const li = document.createElement("li");
   const priorityStyle = stylePriority(taskPriority);
@@ -14,8 +13,7 @@ const createTaskElement = (taskTitle, taskPriority) => {
   const input = document.createElement("input");
   input.classList.add("form-check-input");
   input.type = "checkbox";
-  input.value = "";
-  input.id = taskTitle.replace(/\s+/g, "-"); // This regex replaces whitespaces with dashes for proper html ids
+  input.id = formatTaskID(taskTitle);
 
   const label = document.createElement("label");
   label.classList.add("ms-2");
@@ -27,6 +25,8 @@ const createTaskElement = (taskTitle, taskPriority) => {
   li.append(input, label, deleteIcon);
   return li;
 };
+
+const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
 const createDeleteIcon = () => {
   const button = document.createElement("button");
@@ -41,6 +41,7 @@ const stylePriority = (priority) => {
   // "list-group-item-success" for green
 };
 
+/* Reset UI */
 export const resetTasksUI = () => {
   document.querySelector().textContent = "";
 };

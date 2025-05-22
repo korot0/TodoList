@@ -1,16 +1,17 @@
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 
+/* Rendering list cards in main content */
 export const renderCards = () => {
   const cardContainer = document.querySelector("#card-container");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
     const card = createListCardElement(list.name);
     cardContainer.appendChild(card);
-    /* Replace the whitespaces with dashes and add -ul at the end.
-    This helps us look for the appropriate parent id so we can append the list. */
-    const ulParentID = `${list.name.replace(/\s+/g, "-")}-ul`;
+
+    const ulParentID = formatListULID(list.name);
     const ulParent = document.querySelector(`#${ulParentID}`);
+
     renderTasks(list, ulParent);
   });
 };
@@ -25,15 +26,15 @@ const createListCardElement = (listName) => {
 
   const ul = document.createElement("ul");
   ul.classList.add("list-group", "list-group-flush");
-  ul.id = `${listName.replace(/\s+/g, "-")}-ul`; // This regex replaces whitespaces with dashes for proper html ids. We also add -ul at the end so we don't override the ids generated from createTaskElement in TaskUI.js
+  ul.id = formatListULID(listName);
 
   div.append(h5, ul);
   return div;
 };
 
-/* TODO */
-// Description and date
+const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
 
+/* Rendering lists in sidebar accordion */
 export const renderListsAccordion = () => {
   const accordion = document.querySelector("#lists-accordion-body");
   const lists = ListManager.getLists();
@@ -50,8 +51,7 @@ const createListAccordionElement = (listName) => {
   const checkBoxInput = document.createElement("input");
   checkBoxInput.classList.add("form-check-input", "me-1");
   checkBoxInput.type = "checkbox";
-  checkBoxInput.value = "";
-  checkBoxInput.id = `${listName.replace(/\s+/g, "-")}-checkbox`;
+  checkBoxInput.id = formatListCheckboxID(listName);
 
   const checkBoxLabel = document.createElement("label");
   checkBoxLabel.classList.add("form-check-label", "stretched-link");
@@ -62,6 +62,10 @@ const createListAccordionElement = (listName) => {
   return li;
 };
 
+const formatListCheckboxID = (listName) =>
+  `${listName.replace(/\s+/g, "-")}-checkbox`;
+
+/* Rendering lists in dropdown element in "+ Create Task" form */
 export const renderSelectListsAccordion = () => {
   const container = document.querySelector("#list-select-container");
   const lists = ListManager.getLists();
@@ -78,6 +82,7 @@ const createSelectListElement = (listName) => {
   return option;
 };
 
+/* Reset UI */
 export const resetListsUI = () => {
   document.querySelector("#card-container").textContent = "";
   document.querySelector("#lists-accordion-body").textContent = "";
