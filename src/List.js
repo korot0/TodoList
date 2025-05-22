@@ -6,13 +6,16 @@ export const List = (name) => {
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 
+  const getTasks = () => tasks;
+
   const addTask = (title, description, priority, dueDate) => {
     if (isDuplicateTask(title)) console.log("Task already exists!");
     else tasks.push(Task(title, description, priority, dueDate));
   };
 
-  const removeTask = (task) => {
-    tasks = tasks.filter((t) => t.title !== task.title);
+  const removeTask = (taskTitle) => {
+    tasks = tasks.filter((t) => t.title !== taskTitle);
+    console.log(tasks);
   };
 
   const markTaskCompleted = (task) => {
@@ -33,7 +36,7 @@ export const List = (name) => {
 
   return {
     name,
-    tasks,
+    getTasks,
     completedTasks,
     getTask,
     addTask,

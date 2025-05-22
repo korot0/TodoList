@@ -1,13 +1,13 @@
-import { ListManager } from "./ListManager";
+import { updateScreen } from "./UpdateScreen";
 
 export const renderTasks = (list, parent) => {
-  list.tasks.forEach((task) => {
-    const taskEl = createTaskElement(task.title, task.priority);
+  list.getTasks().forEach((task) => {
+    const taskEl = createTaskElement(task.title, task.priority, list);
     parent.appendChild(taskEl);
   });
 };
 
-const createTaskElement = (taskTitle, taskPriority) => {
+const createTaskElement = (taskTitle, taskPriority, list) => {
   const li = document.createElement("li");
   const priorityStyle = stylePriority(taskPriority);
   li.classList.add("list-group-item", priorityStyle);
@@ -22,20 +22,29 @@ const createTaskElement = (taskTitle, taskPriority) => {
   label.htmlFor = input.id;
   label.textContent = taskTitle;
 
-  const deleteIcon = createDeleteIcon(taskTitle);
+  const deleteBtn = createDeleteButton(taskTitle, list);
 
-  li.append(input, label, deleteIcon);
+  li.append(input, label, deleteBtn);
   return li;
 };
 
 const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
-const createDeleteIcon = (taskTitle) => {
+const createDeleteButton = (taskTitle, list) => {
   const button = document.createElement("button");
   button.classList.add("material-symbols-outlined", "hide", "delete-btn");
   button.textContent = "delete";
   button.value = taskTitle;
+  setupDeleteBtnListener(button, list);
   return button;
+};
+
+const setupDeleteBtnListener = (button, list) => {
+  button.addEventListener("click", () => {
+    const taskTarget = button.value;
+    list.removeTask(taskTarget);
+    updateScreen();
+  });
 };
 
 const stylePriority = (priority) => {
@@ -47,15 +56,4 @@ const stylePriority = (priority) => {
 /* Reset UI */
 export const resetTasksUI = () => {
   document.querySelector().textContent = "";
-};
-
-/* Task deletion */
-export const setupDeleteBtnsListeners = () => {
-  const deleteButtons = document.querySelectorAll(".delete-btn");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const listTarget = button.value;
-      console.log(listTarget);
-    });
-  });
 };

@@ -9,7 +9,6 @@ import { setupDeleteBtnsListeners } from "./TaskUI";
 export const updateScreen = () => {
   resetListsUI();
   renderUI();
-  setupDeleteBtnsListeners();
 };
 
 const renderUI = () => {
