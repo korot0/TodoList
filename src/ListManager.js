@@ -14,7 +14,6 @@ export const ListManager = (() => {
     lists = lists.filter((l) => l.name !== list.name);
   };
 
-  /* PRIVATE HELPER METHODS */
   const isDuplicateList = (listName) =>
     lists.some((list) => list.name.toLowerCase() === listName.toLowerCase());
 

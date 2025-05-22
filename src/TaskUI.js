@@ -16,7 +16,6 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   input.classList.add("form-check-input");
   input.type = "checkbox";
   input.id = formatTaskID(taskTitle);
-
   const label = document.createElement("label");
   label.classList.add("ms-2");
   label.htmlFor = input.id;
