@@ -1,3 +1,5 @@
+import { ListManager } from "./ListManager";
+
 export const renderTasks = (list, parent) => {
   list.tasks.forEach((task) => {
     const taskEl = createTaskElement(task.title, task.priority);
@@ -20,7 +22,7 @@ const createTaskElement = (taskTitle, taskPriority) => {
   label.htmlFor = input.id;
   label.textContent = taskTitle;
 
-  const deleteIcon = createDeleteIcon();
+  const deleteIcon = createDeleteIcon(taskTitle);
 
   li.append(input, label, deleteIcon);
   return li;
@@ -28,10 +30,11 @@ const createTaskElement = (taskTitle, taskPriority) => {
 
 const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
-const createDeleteIcon = () => {
+const createDeleteIcon = (taskTitle) => {
   const button = document.createElement("button");
-  button.classList.add("material-symbols-outlined", "hide");
+  button.classList.add("material-symbols-outlined", "hide", "delete-btn");
   button.textContent = "delete";
+  button.value = taskTitle;
   return button;
 };
 
@@ -44,4 +47,15 @@ const stylePriority = (priority) => {
 /* Reset UI */
 export const resetTasksUI = () => {
   document.querySelector().textContent = "";
+};
+
+/* Task deletion */
+export const setupDeleteBtnsListeners = () => {
+  const deleteButtons = document.querySelectorAll(".delete-btn");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const listTarget = button.value;
+      console.log(listTarget);
+    });
+  });
 };
