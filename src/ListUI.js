@@ -55,7 +55,7 @@ const createListAccordionElement = (listName) => {
   checkBoxInput.id = formatListCheckboxID(listName);
 
   const checkBoxLabel = document.createElement("label");
-  checkBoxLabel.classList.add("form-check-label");
+  checkBoxLabel.classList.add("form-check-label", "ms-2");
   checkBoxLabel.htmlFor = checkBoxInput.id;
   checkBoxLabel.textContent = listName;
 
