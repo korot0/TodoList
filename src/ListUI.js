@@ -1,5 +1,6 @@
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
+import { updateScreen } from "./UpdateScreen";
 
 /* Rendering list cards in main content */
 export const renderCards = () => {
@@ -54,16 +55,34 @@ const createListAccordionElement = (listName) => {
   checkBoxInput.id = formatListCheckboxID(listName);
 
   const checkBoxLabel = document.createElement("label");
-  checkBoxLabel.classList.add("form-check-label", "stretched-link");
+  checkBoxLabel.classList.add("form-check-label");
   checkBoxLabel.htmlFor = checkBoxInput.id;
   checkBoxLabel.textContent = listName;
 
-  li.append(checkBoxInput, checkBoxLabel);
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("material-symbols-outlined", "hide", "delete-btn");
+  deleteBtn.textContent = "delete";
+  deleteBtn.value = listName;
+  attachDeleteBtnListener(deleteBtn, listName);
+
+  li.append(checkBoxInput, checkBoxLabel, deleteBtn);
   return li;
 };
 
 const formatListCheckboxID = (listName) =>
   `${listName.replace(/\s+/g, "-")}-checkbox`;
+
+const attachDeleteBtnListener = (button, listName) => {
+  button.addEventListener("click", () => {
+    onDelete(listName);
+    updateScreen();
+  });
+};
+
+const onDelete = (listName) => {
+  const list = ListManager.getList(listName);
+  ListManager.removeList(list);
+};
 
 /* Rendering lists in dropdown element in "+ Create Task" form */
 export const renderSelectListsAccordion = () => {

@@ -47,7 +47,8 @@ header {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.card li {
+.card li,
+.accordion-body li {
   display: flex;
 }
 
@@ -64,19 +65,3 @@ header {
 li:hover .hide {
   display: inline;
 }
-
-/* .description {
-  font-size: 0.8rem;
-  margin-left: 2rem;
-  color: #ffc107;
-}
-
-.date {
-  font-size: 0.8rem;
-  margin-left: 2.2rem;
-  color: #ffc107;
-  width: fit-content;
-  border: 1px solid darkgoldenrod;
-  border-radius: 100px;
-  padding: 0 1rem;
-} */
