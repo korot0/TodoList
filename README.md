@@ -11,6 +11,7 @@ TODO:
 - JS:
 
   - Coupling when it comes to deleting tasks through UI
+  - are you sure? pop up when deleting
 
 - CSS:
 

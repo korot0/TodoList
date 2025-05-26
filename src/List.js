@@ -7,8 +7,7 @@ export const List = (name) => {
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 
   const addTask = (title, description, priority, dueDate) => {
-    if (isDuplicateTask(title)) console.log("Task already exists!");
-    else tasks.push(Task(title, description, priority, dueDate));
+    tasks.push(Task(title, description, priority, dueDate));
   };
 
   const removeTask = (taskTitle) => {
@@ -26,10 +25,6 @@ export const List = (name) => {
     completedTasks = completedTasks.filter((t) => t.title !== task.title);
     tasks.push(task);
   };
-
-  /* PRIVATE HELPER METHODS */
-  const isDuplicateTask = (taskTitle) =>
-    tasks.some((task) => task.title == taskTitle);
 
   return {
     name,

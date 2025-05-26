@@ -34,6 +34,7 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
 
 const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
+// Refactor
 const attachDeleteBtnListener = (button, list) => {
   button.addEventListener("click", () => {
     list.removeTask(button.value);
@@ -44,6 +45,5 @@ const attachDeleteBtnListener = (button, list) => {
 const stylePriority = (priority) => {
   if (priority === "high") return "list-group-item-danger";
   if (priority === "medium") return "list-group-item-warning";
-  else return "list-group-item-light";
   // "list-group-item-success" for green
 };
