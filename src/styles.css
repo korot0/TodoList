@@ -52,16 +52,38 @@ header {
   display: flex;
 }
 
-.hide {
+.list-delete-btn,
+.task-delete-btn {
   display: none;
   margin-left: auto;
   border: none;
   padding: 0;
   background-color: inherit;
-  /* change color? */
   color: inherit;
 }
 
-li:hover .hide {
+li:hover .list-delete-btn,
+li:hover .task-delete-btn {
+  display: inline;
+}
+
+h5 {
+  margin: 0;
+}
+
+.list-edit-btn {
+  display: none;
+  margin-left: auto;
+  border: none;
+  padding: 0;
+  background-color: initial;
+  color: inherit;
+}
+
+.card-header-container {
+  display: flex;
+}
+
+.card-header-container:hover .list-edit-btn {
   display: inline;
 }

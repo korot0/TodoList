@@ -6,8 +6,8 @@ export const ListManager = (() => {
   const getList = (listName) => lists.find((list) => list.name === listName);
 
   const createList = (listName) => {
-    if (isDuplicateList(listName)) console.log("List already exists!");
-    else lists.push(List(listName));
+    if (isDuplicateList(listName)) return false;
+    lists.push(List(listName));
   };
 
   const removeList = (list) => {

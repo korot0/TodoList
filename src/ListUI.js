@@ -21,15 +21,23 @@ const createListCardElement = (listName) => {
   const div = document.createElement("div");
   div.classList.add("card");
 
+  const headerContainer = document.createElement("div");
+  headerContainer.classList.add("card-header-container", "card-header");
+
   const h5 = document.createElement("h5");
   h5.textContent = listName;
-  h5.classList.add("card-header");
+
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
+  editBtn.textContent = "edit";
+
+  headerContainer.append(h5, editBtn);
 
   const ul = document.createElement("ul");
   ul.classList.add("list-group", "list-group-flush");
   ul.id = formatListULID(listName);
 
-  div.append(h5, ul);
+  div.append(headerContainer, ul);
   return div;
 };
 
@@ -60,7 +68,7 @@ const createListAccordionElement = (listName) => {
   checkBoxLabel.textContent = listName;
 
   const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("material-symbols-outlined", "hide", "delete-btn");
+  deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
   deleteBtn.textContent = "delete";
   deleteBtn.value = listName;
   attachDeleteBtnListener(deleteBtn, listName);
@@ -107,3 +115,5 @@ export const resetListsUI = () => {
   document.querySelector("#lists-accordion-body").textContent = "";
   document.querySelector("#list-select-container").textContent = "";
 };
+
+/* Duplicate list popup */

@@ -22,8 +22,12 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   label.htmlFor = input.id;
   label.textContent = taskTitle;
 
+  // Expand button
+
+  // Edit button
+
   const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("material-symbols-outlined", "hide", "delete-btn");
+  deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
   deleteBtn.value = taskTitle;
   attachDeleteBtnListener(deleteBtn, list);

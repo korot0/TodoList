@@ -20,12 +20,6 @@ export const List = (name) => {
     completedTasks.push(task);
   };
 
-  const restoreTask = (task) => {
-    task.completed = false;
-    completedTasks = completedTasks.filter((t) => t.title !== task.title);
-    tasks.push(task);
-  };
-
   return {
     name,
     getTasks: () => tasks,
@@ -34,6 +28,5 @@ export const List = (name) => {
     addTask,
     removeTask,
     markTaskCompleted,
-    restoreTask,
   };
 };
