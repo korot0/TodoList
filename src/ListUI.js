@@ -41,9 +41,23 @@ const createCardHeader = (listName) => {
   const editBtn = document.createElement("button");
   editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
   editBtn.textContent = "edit";
+  editBtn.value = listName;
+  attachEditBtnListener(editBtn, listName);
 
   cardHeader.append(h5, editBtn);
   return cardHeader;
+};
+
+const attachEditBtnListener = (button, listName) => {
+  button.addEventListener("click", () => {
+    onEdit(listName);
+    // updateScreen();
+  });
+};
+
+const onEdit = (listName) => {
+  const list = ListManager.getList(listName);
+  console.log(list.name);
 };
 
 const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
