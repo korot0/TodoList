@@ -21,8 +21,19 @@ const createListCardElement = (listName) => {
   const div = document.createElement("div");
   div.classList.add("card");
 
-  const headerContainer = document.createElement("div");
-  headerContainer.classList.add("card-header-container", "card-header");
+  const header = createCardHeader(listName);
+
+  const ul = document.createElement("ul");
+  ul.classList.add("list-group", "list-group-flush");
+  ul.id = formatListULID(listName);
+
+  div.append(header, ul);
+  return div;
+};
+
+const createCardHeader = (listName) => {
+  const cardHeader = document.createElement("div");
+  cardHeader.classList.add("card-header-container", "card-header");
 
   const h5 = document.createElement("h5");
   h5.textContent = listName;
@@ -31,14 +42,8 @@ const createListCardElement = (listName) => {
   editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
   editBtn.textContent = "edit";
 
-  headerContainer.append(h5, editBtn);
-
-  const ul = document.createElement("ul");
-  ul.classList.add("list-group", "list-group-flush");
-  ul.id = formatListULID(listName);
-
-  div.append(headerContainer, ul);
-  return div;
+  cardHeader.append(h5, editBtn);
+  return cardHeader;
 };
 
 const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;

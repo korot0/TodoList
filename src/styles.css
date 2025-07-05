@@ -80,10 +80,10 @@ h5 {
   color: inherit;
 }
 
-.card-header-container {
+.card-header {
   display: flex;
 }
 
-.card-header-container:hover .list-edit-btn {
+.card-header:hover .list-edit-btn {
   display: inline;
 }
