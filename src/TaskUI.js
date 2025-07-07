@@ -30,7 +30,7 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
   deleteBtn.value = taskTitle;
-  deleteBtn.setAttribute("data-bs-target", "#staticBackdrop");
+  deleteBtn.setAttribute("data-bs-target", "#deleteModalConfirmation");
   deleteBtn.setAttribute("data-bs-toggle", "modal");
   attachDeleteBtnListener(list, deleteBtn);
 
