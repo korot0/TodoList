@@ -1,138 +1,60 @@
-import { ListManager } from "./ListManager";
-import { renderTasks } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
 
-/* Rendering list cards in main content */
-export const renderCards = () => {
-  const cardContainer = document.querySelector("#card-container");
-  const lists = ListManager.getLists();
-  lists.forEach((list) => {
-    const card = createListCardElement(list.name);
-    cardContainer.appendChild(card);
-
-    const ulParentID = formatListULID(list.name);
-    const ulParent = document.querySelector(`#${ulParentID}`);
-
-    renderTasks(list, ulParent);
+export const renderTasks = (list, parent) => {
+  list.getTasks().forEach((task) => {
+    const taskEl = createTaskElement(task.title, task.priority, list);
+    parent.appendChild(taskEl);
   });
 };
 
-const createListCardElement = (listName) => {
-  const div = document.createElement("div");
-  div.classList.add("card");
-
-  const header = createCardHeader(listName);
-
-  const ul = document.createElement("ul");
-  ul.classList.add("list-group", "list-group-flush");
-  ul.id = formatListULID(listName);
-
-  div.append(header, ul);
-  return div;
-};
-
-const createCardHeader = (listName) => {
-  const cardHeader = document.createElement("div");
-  cardHeader.classList.add("card-header-container", "card-header");
-
-  const h5 = document.createElement("h5");
-  h5.textContent = listName;
-
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
-  editBtn.textContent = "edit";
-  editBtn.value = listName;
-  attachEditBtnListener(editBtn, listName);
-
-  cardHeader.append(h5, editBtn);
-  return cardHeader;
-};
-
-const attachEditBtnListener = (button, listName) => {
-  button.addEventListener("click", () => {
-    onEdit(listName);
-    // updateScreen();
-  });
-};
-
-const onEdit = (listName) => {
-  const list = ListManager.getList(listName);
-  console.log(list.name);
-};
-
-const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
-
-/* Rendering lists in sidebar accordion */
-export const renderListsAccordion = () => {
-  const accordion = document.querySelector("#lists-accordion-body");
-  const lists = ListManager.getLists();
-  lists.forEach((list) => {
-    const accordionList = createListAccordionElement(list.name);
-    accordion.appendChild(accordionList);
-  });
-};
-
-const createListAccordionElement = (listName) => {
+const createTaskElement = (taskTitle, taskPriority, list) => {
   const li = document.createElement("li");
-  li.classList.add("list-group-item");
+  const priorityStyle = stylePriority(taskPriority);
+  li.classList.add("list-group-item", priorityStyle);
 
-  const checkBoxInput = document.createElement("input");
-  checkBoxInput.classList.add("form-check-input", "me-1");
-  checkBoxInput.type = "checkbox";
-  checkBoxInput.id = formatListCheckboxID(listName);
+  const input = document.createElement("input");
+  input.classList.add("form-check-input");
+  input.type = "checkbox";
+  input.id = formatTaskID(taskTitle);
 
-  const checkBoxLabel = document.createElement("label");
-  checkBoxLabel.classList.add("form-check-label", "ms-2");
-  checkBoxLabel.htmlFor = checkBoxInput.id;
-  checkBoxLabel.textContent = listName;
+  const label = document.createElement("label");
+  label.classList.add("ms-2");
+  label.htmlFor = input.id;
+  label.textContent = taskTitle;
+
+  // Expand button
+
+  // Edit button
 
   const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
+  deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
-  deleteBtn.value = listName;
-  attachDeleteBtnListener(deleteBtn, listName);
+  deleteBtn.value = taskTitle;
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  deleteBtn.setAttribute("data-bs-target", "#staticBackdrop");
+  attachDeleteBtnListener(deleteBtn, list);
 
-  li.append(checkBoxInput, checkBoxLabel, deleteBtn);
+  li.append(input, label, deleteBtn);
   return li;
 };
 
-const formatListCheckboxID = (listName) =>
-  `${listName.replace(/\s+/g, "-")}-checkbox`;
+const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
-const attachDeleteBtnListener = (button, listName) => {
+// Refactor
+const attachDeleteBtnListener = (button, list) => {
   button.addEventListener("click", () => {
-    onDelete(listName);
+    // delete button.value?
+    list.removeTask(button.value);
     updateScreen();
   });
 };
+// const onDelete = (listName) => {
+//   const list = ListManager.getList(listName);
+//   ListManager.removeList(list);
+// };
 
-const onDelete = (listName) => {
-  const list = ListManager.getList(listName);
-  ListManager.removeList(list);
+const stylePriority = (priority) => {
+  if (priority === "high") return "list-group-item-danger";
+  if (priority === "medium") return "list-group-item-warning";
+  // "list-group-item-success" for green
 };
-
-/* Rendering lists in dropdown element in "+ Create Task" form */
-export const renderSelectListsAccordion = () => {
-  const container = document.querySelector("#list-select-container");
-  const lists = ListManager.getLists();
-  lists.forEach((list) => {
-    const optionEl = createSelectListElement(list.name);
-    container.appendChild(optionEl);
-  });
-};
-
-const createSelectListElement = (listName) => {
-  const option = document.createElement("option");
-  option.value = listName;
-  option.textContent = listName;
-  return option;
-};
-
-/* Reset UI */
-export const resetListsUI = () => {
-  document.querySelector("#card-container").textContent = "";
-  document.querySelector("#lists-accordion-body").textContent = "";
-  document.querySelector("#list-select-container").textContent = "";
-};
-
-/* Duplicate list popup */
