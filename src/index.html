@@ -264,7 +264,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">Are you sure you want to delete?</div>
+          <div id="delete-text-confirmation" class="modal-body"></div>
           <div class="modal-footer">
             <button
               type="button"
@@ -275,10 +275,11 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-danger"
               data-bs-dismiss="modal"
+              id="task-modal-delete-btn"
             >
-              Continue
+              Delete
             </button>
           </div>
         </div>

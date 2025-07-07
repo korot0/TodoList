@@ -30,7 +30,9 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
   deleteBtn.value = taskTitle;
-  attachDeleteBtnListener(deleteBtn, list);
+  deleteBtn.setAttribute("data-bs-target", "#staticBackdrop");
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  attachDeleteBtnListener(list, deleteBtn);
 
   li.append(input, label, deleteBtn);
   return li;
@@ -38,11 +40,35 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
 
 const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 
-// Refactor
-const attachDeleteBtnListener = (button, list) => {
+const attachDeleteBtnListener = (list, button) => {
+  const taskTitle = button.value; // button.value stores the respective task title
   button.addEventListener("click", () => {
-    list.removeTask(button.value);
-    updateScreen();
+    onDelete(list, taskTitle);
+  });
+};
+
+const onDelete = (list, taskTitle) => {
+  const currentList = list;
+  const currentTaskTitle = taskTitle;
+  renderDeleteTextConfirmation(taskTitle);
+  handleDeleteTaskModalConfirmation(currentList, currentTaskTitle);
+  updateScreen();
+};
+
+const renderDeleteTextConfirmation = (taskTitle) => {
+  const text = document.querySelector("#delete-text-confirmation");
+  text.textContent = `Are you sure you want to delete "${taskTitle}"`;
+};
+
+const handleDeleteTaskModalConfirmation = (currentList, currentTaskTitle) => {
+  const deleteBtn = document.querySelector("#task-modal-delete-btn");
+  deleteBtn.addEventListener("click", () => {
+    if (currentList && currentTaskTitle) {
+      currentList.removeTask(currentTaskTitle);
+      updateScreen();
+      currentList = null;
+      currentTaskTitle = null;
+    }
   });
 };
 
