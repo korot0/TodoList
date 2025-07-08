@@ -41,7 +41,7 @@ const createCardHeader = (listName) => {
   const editBtn = document.createElement("button");
   editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
   editBtn.textContent = "edit";
-  editBtn.value = listName;
+  // editBtn.value = listName;
   attachEditBtnListener(editBtn, listName);
 
   cardHeader.append(h5, editBtn);
@@ -89,7 +89,6 @@ const createListAccordionElement = (listName) => {
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
   deleteBtn.textContent = "delete";
-  deleteBtn.value = listName;
   attachDeleteBtnListener(deleteBtn, listName);
 
   li.append(checkBoxInput, checkBoxLabel, deleteBtn);
@@ -107,7 +106,9 @@ const attachDeleteBtnListener = (button, listName) => {
 };
 
 const onDelete = (listName) => {
-  // delete listName?
+  /*   TODO; */
+  // delete listName? confirmation modal
+
   const list = ListManager.getList(listName);
   ListManager.removeList(list);
 };
@@ -124,7 +125,6 @@ export const renderSelectListsAccordion = () => {
 
 const createSelectListElement = (listName) => {
   const option = document.createElement("option");
-  option.value = listName;
   option.textContent = listName;
   return option;
 };

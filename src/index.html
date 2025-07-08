@@ -244,28 +244,20 @@
       </div>
     </div>
     <!-- DELETE TASK MODAL -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#deleteModalConfirmation"
-    >
-      Launch static backdrop modal
-    </button>
     <div
       class="modal fade"
-      id="deleteModalConfirmation"
+      id="deleteTaskModal"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="deleteModalConfirmationLabel"
+      aria-labelledby="deleteTaskModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteModalConfirmationLabel">
-              Warning!
+            <h1 class="modal-title fs-5" id="deleteTaskModalLabel">
+              Delete Task
             </h1>
             <button
               type="button"
@@ -287,6 +279,7 @@
               type="button"
               class="btn btn-danger"
               id="task-modal-delete-btn"
+              data-bs-dismiss="modal"
             >
               Delete
             </button>

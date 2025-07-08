@@ -26,19 +26,35 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
 
   // Edit button
 
-  // Delete button
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
-  deleteBtn.value = taskTitle;
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
+  attachDeleteBtnListener(deleteBtn, taskTitle, list);
 
   li.append(input, label, deleteBtn);
   return li;
 };
 
+const attachDeleteBtnListener = (button, taskTitle, list) => {
+  button.addEventListener("click", () => {
+    renderDeleteTextConfirmation(taskTitle);
+    deleteTaskConfirmation(taskTitle, list);
+  });
+};
+
+const deleteTaskConfirmation = (taskTitle, list) => {
+  const taskModalDeleteBtn = document.querySelector("#task-modal-delete-btn");
+  taskModalDeleteBtn.onclick = () => {
+    list.removeTask(taskTitle);
+    updateScreen();
+  };
+};
+
 const renderDeleteTextConfirmation = (taskTitle) => {
   const text = document.querySelector("#delete-text-confirmation");
-  text.textContent = `Are you sure you want to delete "${taskTitle}"`;
+  text.textContent = `Are you sure you want to delete "${taskTitle}"?`;
 };
 
 const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
