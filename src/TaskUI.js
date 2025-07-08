@@ -31,7 +31,6 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
   deleteBtn.value = taskTitle;
-  attachDeleteBtnListener(list, deleteBtn);
 
   li.append(input, label, deleteBtn);
   return li;
