@@ -89,29 +89,37 @@ const createListAccordionElement = (listName) => {
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
   deleteBtn.textContent = "delete";
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  deleteBtn.setAttribute("data-bs-target", "#deleteListModal");
   attachDeleteBtnListener(deleteBtn, listName);
 
   li.append(checkBoxInput, checkBoxLabel, deleteBtn);
   return li;
 };
 
-const formatListCheckboxID = (listName) =>
-  `${listName.replace(/\s+/g, "-")}-checkbox`;
-
 const attachDeleteBtnListener = (button, listName) => {
   button.addEventListener("click", () => {
-    onDelete(listName);
-    updateScreen();
+    renderDeleteTextConfirmation(listName);
+    deleteListConfirmation(listName);
   });
 };
 
-const onDelete = (listName) => {
-  /*   TODO; */
-  // delete listName? confirmation modal
-
-  const list = ListManager.getList(listName);
-  ListManager.removeList(list);
+const deleteListConfirmation = (listName) => {
+  const listModalDeleteBtn = document.querySelector("#list-modal-delete-btn");
+  listModalDeleteBtn.onclick = () => {
+    const list = ListManager.getList(listName);
+    ListManager.removeList(list);
+    updateScreen();
+  };
 };
+
+const renderDeleteTextConfirmation = (listName) => {
+  const text = document.querySelector("#delete-list-text-confirmation");
+  text.textContent = `This action will delete "${listName}" and all of its tasks.`;
+};
+
+const formatListCheckboxID = (listName) =>
+  `${listName.replace(/\s+/g, "-")}-checkbox`;
 
 /* Rendering lists in dropdown element in "+ Create Task" form */
 export const renderSelectListsAccordion = () => {
