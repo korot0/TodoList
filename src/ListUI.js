@@ -38,24 +38,51 @@ const createCardHeader = (listName) => {
   const h5 = document.createElement("h5");
   h5.textContent = listName;
 
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("material-symbols-outlined", "list-edit-btn");
-  editBtn.textContent = "edit";
-  // editBtn.value = listName;
-  attachEditBtnListener(editBtn, listName);
+  const dropdown = renderDropdown();
+  // attachDropdownListener(dropdown, listName);
 
-  cardHeader.append(h5, editBtn);
+  cardHeader.append(h5, dropdown);
   return cardHeader;
 };
 
-const attachEditBtnListener = (button, listName) => {
+const attachDropdownListener = (button, listName) => {
   button.addEventListener("click", () => {
-    onEdit(listName);
+    onClick(listName);
     // updateScreen();
   });
 };
 
-const onEdit = (listName) => {
+const renderDropdown = () => {
+  const div = document.createElement("div");
+  div.classList.add("list-dropdown-btn");
+
+  const button = document.createElement("button");
+  button.classList.add("material-symbols-outlined", "dropdown-btn");
+  button.setAttribute("data-bs-toggle", "dropdown");
+  button.setAttribute("aria-expanded", "false");
+  button.textContent = "more_vert";
+
+  const ul = document.createElement("ul");
+  ul.classList.add("dropdown-menu");
+
+  const renameLi = document.createElement("li");
+  const renameBtn = document.createElement("button");
+  renameBtn.classList.add("dropdown-item");
+  renameBtn.textContent = "Rename";
+  renameLi.appendChild(renameBtn);
+
+  const deleteLi = document.createElement("li");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("dropdown-item");
+  deleteBtn.textContent = "Delete";
+  deleteLi.appendChild(deleteBtn);
+
+  ul.append(renameLi, deleteLi);
+  div.append(button, ul);
+  return div;
+};
+
+const onClick = (listName) => {
   const list = ListManager.getList(listName);
   console.log(list.name);
 };
@@ -86,14 +113,7 @@ const createListAccordionElement = (listName) => {
   checkBoxLabel.htmlFor = checkBoxInput.id;
   checkBoxLabel.textContent = listName;
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
-  deleteBtn.textContent = "delete";
-  deleteBtn.setAttribute("data-bs-toggle", "modal");
-  deleteBtn.setAttribute("data-bs-target", "#deleteListModal");
-  attachDeleteBtnListener(deleteBtn, listName);
-
-  li.append(checkBoxInput, checkBoxLabel, deleteBtn);
+  li.append(checkBoxInput, checkBoxLabel);
   return li;
 };
 
@@ -103,6 +123,13 @@ const attachDeleteBtnListener = (button, listName) => {
     deleteListConfirmation(listName);
   });
 };
+
+// const deleteBtn = document.createElement("button");
+// deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
+// deleteBtn.textContent = "delete";
+// deleteBtn.setAttribute("data-bs-toggle", "modal");
+// deleteBtn.setAttribute("data-bs-target", "#deleteListModal");
+// attachDeleteBtnListener(deleteBtn, listName);
 
 const deleteListConfirmation = (listName) => {
   const listModalDeleteBtn = document.querySelector("#list-modal-delete-btn");
