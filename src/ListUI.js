@@ -45,19 +45,12 @@ const createCardHeader = (listName) => {
   return cardHeader;
 };
 
-const attachDropdownListener = (button, listName) => {
-  button.addEventListener("click", () => {
-    onClick(listName);
-    // updateScreen();
-  });
-};
-
 const renderDropdown = () => {
   const div = document.createElement("div");
-  div.classList.add("list-dropdown-btn");
+  div.classList.add("list-dropdown");
 
   const button = document.createElement("button");
-  button.classList.add("material-symbols-outlined", "dropdown-btn");
+  button.classList.add("material-symbols-outlined", "list-dropdown-btn");
   button.setAttribute("data-bs-toggle", "dropdown");
   button.setAttribute("aria-expanded", "false");
   button.textContent = "more_vert";
@@ -73,18 +66,13 @@ const renderDropdown = () => {
 
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("dropdown-item");
+  deleteBtn.classList.add("dropdown-item", "text-danger");
   deleteBtn.textContent = "Delete";
   deleteLi.appendChild(deleteBtn);
 
   ul.append(renameLi, deleteLi);
   div.append(button, ul);
   return div;
-};
-
-const onClick = (listName) => {
-  const list = ListManager.getList(listName);
-  console.log(list.name);
 };
 
 const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;

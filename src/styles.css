@@ -60,29 +60,33 @@ h5 {
   display: flex;
 }
 
-.card-header:hover .list-dropdown-btn {
+.card-header:hover .list-dropdown {
   display: inline;
 }
 
-.list-dropdown-btn,
+.list-dropdown,
 .task-delete-btn {
-  /* display: none; */
+  display: none;
   margin-left: auto;
   border: none;
   padding: 0;
   background-color: inherit;
   color: inherit;
 }
+.list-dropdown {
+  background-color: initial;
+  height: 0;
+}
 
-li:hover .list-dropdown-btn,
+li:hover .list-dropdown,
 li:hover .task-delete-btn {
   display: inline;
 }
 
-.dropdown-btn {
+.list-dropdown-btn {
   border: none;
   margin: 0;
   padding: 0;
   width: auto;
-  overflow: visible;
+  background-color: transparent;
 }
