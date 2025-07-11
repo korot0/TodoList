@@ -38,14 +38,14 @@ const createCardHeader = (listName) => {
   const h5 = document.createElement("h5");
   h5.textContent = listName;
 
-  const dropdown = renderDropdown();
+  const dropdown = renderDropdown(listName);
   // attachDropdownListener(dropdown, listName);
 
   cardHeader.append(h5, dropdown);
   return cardHeader;
 };
 
-const renderDropdown = () => {
+const renderDropdown = (listName) => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
 
@@ -67,8 +67,11 @@ const renderDropdown = () => {
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("dropdown-item", "text-danger");
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  deleteBtn.setAttribute("data-bs-target", "#deleteListModal");
   deleteBtn.textContent = "Delete";
   deleteLi.appendChild(deleteBtn);
+  attachDeleteBtnListener(deleteBtn, listName);
 
   ul.append(renameLi, deleteLi);
   div.append(button, ul);
@@ -76,6 +79,27 @@ const renderDropdown = () => {
 };
 
 const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
+
+const attachDeleteBtnListener = (button, listName) => {
+  button.addEventListener("click", () => {
+    renderDeleteTextConfirmation(listName);
+    deleteListConfirmation(listName);
+  });
+};
+
+const deleteListConfirmation = (listName) => {
+  const listModalDeleteBtn = document.querySelector("#list-modal-delete-btn");
+  listModalDeleteBtn.onclick = () => {
+    const list = ListManager.getList(listName);
+    ListManager.removeList(list);
+    updateScreen();
+  };
+};
+
+const renderDeleteTextConfirmation = (listName) => {
+  const text = document.querySelector("#delete-list-text-confirmation");
+  text.textContent = `This action will delete "${listName}" and all of its tasks.`;
+};
 
 /* Rendering lists in sidebar accordion */
 export const renderListsAccordion = () => {
@@ -103,34 +127,6 @@ const createListAccordionElement = (listName) => {
 
   li.append(checkBoxInput, checkBoxLabel);
   return li;
-};
-
-const attachDeleteBtnListener = (button, listName) => {
-  button.addEventListener("click", () => {
-    renderDeleteTextConfirmation(listName);
-    deleteListConfirmation(listName);
-  });
-};
-
-// const deleteBtn = document.createElement("button");
-// deleteBtn.classList.add("material-symbols-outlined", "list-delete-btn");
-// deleteBtn.textContent = "delete";
-// deleteBtn.setAttribute("data-bs-toggle", "modal");
-// deleteBtn.setAttribute("data-bs-target", "#deleteListModal");
-// attachDeleteBtnListener(deleteBtn, listName);
-
-const deleteListConfirmation = (listName) => {
-  const listModalDeleteBtn = document.querySelector("#list-modal-delete-btn");
-  listModalDeleteBtn.onclick = () => {
-    const list = ListManager.getList(listName);
-    ListManager.removeList(list);
-    updateScreen();
-  };
-};
-
-const renderDeleteTextConfirmation = (listName) => {
-  const text = document.querySelector("#delete-list-text-confirmation");
-  text.textContent = `This action will delete "${listName}" and all of its tasks.`;
 };
 
 const formatListCheckboxID = (listName) =>
