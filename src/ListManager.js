@@ -5,6 +5,12 @@ export const ListManager = (() => {
 
   const getList = (listName) => lists.find((list) => list.name === listName);
 
+  const renameList = (currentName, newName) => {
+    if (isDuplicateList(newName)) return false;
+    const list = getList(currentName);
+    list.name = newName;
+  };
+
   const createList = (listName) => {
     if (isDuplicateList(listName)) return false;
     lists.push(List(listName));
@@ -19,6 +25,7 @@ export const ListManager = (() => {
 
   return {
     getLists: () => lists,
+    renameList,
     getList,
     createList,
     removeList,

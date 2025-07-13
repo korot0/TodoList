@@ -1,3 +1,4 @@
+import { handleRenameListForm } from "./ListFormHandler";
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
@@ -39,7 +40,6 @@ const createCardHeader = (listName) => {
   h5.textContent = listName;
 
   const dropdown = renderDropdown(listName);
-  // attachDropdownListener(dropdown, listName);
 
   cardHeader.append(h5, dropdown);
   return cardHeader;
@@ -61,8 +61,11 @@ const renderDropdown = (listName) => {
   const renameLi = document.createElement("li");
   const renameBtn = document.createElement("button");
   renameBtn.classList.add("dropdown-item");
+  renameBtn.setAttribute("data-bs-toggle", "modal");
+  renameBtn.setAttribute("data-bs-target", "#renameListModal");
   renameBtn.textContent = "Rename";
   renameLi.appendChild(renameBtn);
+  attachRenameBtnListener(renameBtn, listName);
 
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
@@ -82,7 +85,7 @@ const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
 
 const attachDeleteBtnListener = (button, listName) => {
   button.addEventListener("click", () => {
-    renderDeleteTextConfirmation(listName);
+    renderDeleteTaskModalText(listName);
     deleteListConfirmation(listName);
   });
 };
@@ -96,9 +99,16 @@ const deleteListConfirmation = (listName) => {
   };
 };
 
-const renderDeleteTextConfirmation = (listName) => {
+const renderDeleteTaskModalText = (listName) => {
   const text = document.querySelector("#delete-list-text-confirmation");
   text.textContent = `This action will delete "${listName}" and all of its tasks.`;
+};
+
+const attachRenameBtnListener = (button, listName) => {
+  button.addEventListener("click", () => {
+    const form = document.querySelector("#rename-list-modal-form");
+    form.setAttribute("data-buffer", listName);
+  });
 };
 
 /* Rendering lists in sidebar accordion */
@@ -119,6 +129,7 @@ const createListAccordionElement = (listName) => {
   checkBoxInput.classList.add("form-check-input", "me-1");
   checkBoxInput.type = "checkbox";
   checkBoxInput.id = formatListCheckboxID(listName);
+  checkBoxInput.checked = true;
 
   const checkBoxLabel = document.createElement("label");
   checkBoxLabel.classList.add("form-check-label", "ms-2");

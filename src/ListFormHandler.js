@@ -24,3 +24,36 @@ export const handleListForm = (() => {
     .querySelector("#list-modal-form")
     .addEventListener("submit", onListFormSubmit);
 })();
+
+/* FOR RENAMING LISTS */
+const onRenameListFormSubmit = (e) => {
+  e.preventDefault();
+  submitRenameList();
+  resetRenameListModal();
+  updateScreen();
+};
+
+const submitRenameList = () => {
+  const currentName = retrieveNameFromBuffer();
+  const newName = document.querySelector("#new-list-name").value;
+  ListManager.renameList(currentName, newName);
+};
+
+const resetRenameListModal = () => {
+  const form = document.querySelector("#rename-list-modal-form");
+  form.reset();
+  form.setAttribute("data-buffer", "");
+  document.querySelector("#close-rename-list-modal").click();
+};
+
+const retrieveNameFromBuffer = () => {
+  return document
+    .querySelector("#rename-list-modal-form")
+    .getAttribute("data-buffer");
+};
+
+export const handleRenameListForm = (() => {
+  document
+    .querySelector("#rename-list-modal-form")
+    .addEventListener("submit", onRenameListFormSubmit);
+})();

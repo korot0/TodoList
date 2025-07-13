@@ -23,7 +23,6 @@ export const List = (name) => {
   return {
     name,
     getName: () => name,
-    editName: (newName) => (name = newName),
     getTasks: () => tasks,
     getCompletedTasks: () => completedTasks,
     getTask,

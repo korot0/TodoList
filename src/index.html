@@ -331,5 +331,57 @@
         </div>
       </div>
     </div>
+    <!-- RENAME LIST MODAL -->
+    <div
+      class="modal fade"
+      id="renameListModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="renameListModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="renameListModalLabel">
+              Rename List
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="rename-list-modal-form" data-buffer="">
+              <input
+                type="text"
+                class="form-control"
+                id="new-list-name"
+                aria-label="Rename list"
+              />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              id="close-rename-list-modal"
+            >
+              Close
+            </button>
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Rename"
+              form="rename-list-modal-form"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
