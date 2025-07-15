@@ -5,7 +5,7 @@ export const renderTasks = (list, parent) => {
     const taskEl = createTaskElement(
       task.title,
       task.priority,
-      task.dueDate,
+      task.formattedDate,
       list
     );
     parent.appendChild(taskEl);
