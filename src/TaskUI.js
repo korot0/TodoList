@@ -2,12 +2,17 @@ import { updateScreen } from "./UpdateScreen";
 
 export const renderTasks = (list, parent) => {
   list.getTasks().forEach((task) => {
-    const taskEl = createTaskElement(task.title, task.priority, list);
+    const taskEl = createTaskElement(
+      task.title,
+      task.priority,
+      task.dueDate,
+      list
+    );
     parent.appendChild(taskEl);
   });
 };
 
-const createTaskElement = (taskTitle, taskPriority, list) => {
+const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   const li = document.createElement("li");
   const priorityStyle = stylePriority(taskPriority);
   li.classList.add("list-group-item", priorityStyle);
@@ -21,10 +26,10 @@ const createTaskElement = (taskTitle, taskPriority, list) => {
   label.classList.add("ms-2");
   label.htmlFor = input.id;
   label.textContent = taskTitle;
-
-  // Expand button
-
-  // Edit button
+  const div = document.createElement("div");
+  div.textContent = taskDueDate;
+  div.classList.add("date", "text-dark-emphasis", "shadow-lg");
+  label.append(div);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");

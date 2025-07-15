@@ -38,6 +38,7 @@ header {
 }
 
 .card {
+  min-height: 160px;
   width: 30rem;
   padding: 0;
   overflow: auto;
@@ -89,4 +90,13 @@ li:hover .task-delete-btn {
   padding: 0;
   width: auto;
   background-color: transparent;
+}
+
+.date {
+  width: fit-content;
+  margin-top: 5px;
+  padding: 1px 10px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background-color: var(--bs-tertiary-bg);
 }
