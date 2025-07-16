@@ -1,13 +1,13 @@
 import { parseISO, format } from "date-fns";
 
 export const Task = (title, description, priority, date) => {
-  const formatDate = () => {
-    if (date === "") return "n/a";
+  let formattedDate = formatDate();
+
+  function formatDate() {
+    if (date === "") return;
     const parsedDate = parseISO(date);
     return format(parsedDate, "MM/dd/yyyy");
-  };
-
-  let formattedDate = formatDate();
+  }
 
   return {
     title,

@@ -36,17 +36,10 @@ const renderTaskElement = (
   titleAndBtnFlexContainer.append(checkbox, label, deleteBtn);
 
   const description = createDescription(taskDescription);
-  console.log(taskDescription);
   const dueDate = createDueDate(taskDueDate);
 
   li.append(titleAndBtnFlexContainer, description, dueDate);
   return li;
-};
-
-const createDescription = (taskDescription) => {
-  const description = document.createElement("span");
-  description.textContent = taskDescription;
-  return description;
 };
 
 const createLi = (taskPriority) => {
@@ -78,14 +71,19 @@ const createLabel = (taskTitle, checkBoxId) => {
   return label;
 };
 
+const createDescription = (taskDescription) => {
+  const description = document.createElement("div");
+  description.classList.add("description");
+  description.textContent = taskDescription;
+  return description;
+};
+
+// Fix n/a
 const createDueDate = (taskDueDate) => {
-  if (taskDueDate !== "n/a") {
-    const div = document.createElement("div");
-    div.textContent = taskDueDate;
-    div.classList.add("date", "text-body", "shadow-lg");
-    return div;
-  }
-  return "";
+  const div = document.createElement("div");
+  div.textContent = taskDueDate;
+  div.classList.add("date", "text-body", "shadow-lg");
+  return div;
 };
 
 const attachDeleteBtnListener = (button, taskTitle, list) => {
