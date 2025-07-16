@@ -17,6 +17,10 @@ const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   const priorityStyle = stylePriority(taskPriority);
   li.classList.add("list-group-item", priorityStyle);
 
+  const flexContainer = document.createElement("div");
+  flexContainer.classList.add("card-li-container");
+
+  // Checkbox
   const input = document.createElement("input");
   input.classList.add("form-check-input");
   input.type = "checkbox";
@@ -26,11 +30,8 @@ const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   label.classList.add("ms-2");
   label.htmlFor = input.id;
   label.textContent = taskTitle;
-  const div = document.createElement("div");
-  div.textContent = taskDueDate;
-  div.classList.add("date", "text-body", "shadow-lg");
-  label.append(div);
 
+  // Delete Btn
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
   deleteBtn.textContent = "delete";
@@ -38,7 +39,17 @@ const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
   attachDeleteBtnListener(deleteBtn, taskTitle, list);
 
-  li.append(input, label, deleteBtn);
+  flexContainer.append(input, label, deleteBtn);
+  li.append(flexContainer);
+
+  // Due Date
+  if (taskDueDate !== "n/a") {
+    const div = document.createElement("div");
+    div.textContent = taskDueDate;
+    div.classList.add("date", "text-body", "shadow-lg");
+    li.append(div);
+  }
+
   return li;
 };
 
@@ -67,5 +78,6 @@ const formatTaskID = (taskTitle) => taskTitle.replace(/\s+/g, "-");
 const stylePriority = (priority) => {
   if (priority === "high") return "list-group-item-danger";
   if (priority === "medium") return "list-group-item-warning";
+  return "no-priority";
   // "list-group-item-success" for green
 };

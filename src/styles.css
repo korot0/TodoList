@@ -47,16 +47,12 @@ header {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.card li,
-.accordion-body li {
-  display: flex;
-}
-
 h5 {
   margin: 0;
 }
 
-.card-header {
+.card-header,
+.card-li-container {
   display: flex;
 }
 
@@ -92,9 +88,10 @@ li:hover .task-delete-btn {
 }
 
 .date {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   width: fit-content;
-  margin-top: 5px;
+  margin-left: 1.7rem;
+  margin-top: 7px;
   padding: 1px 10px;
   border: 1px solid var(--bs-border-color);
   border-radius: 1rem;
