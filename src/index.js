@@ -12,16 +12,16 @@ window.ListManager = ListManager;
 ListManager.createList("My Tasks");
 const myTasks = ListManager.getList("My Tasks");
 
-myTasks.addTask("Walk the dogs", "poor dogs", "low", "2025-05-14");
+myTasks.addTask("Walk the dogs", "", "low", "2025-05-14");
 
 myTasks.addTask(
   "Wash the dishes",
-  "otherwise you get bugs",
+  "Otherwise you get bugs then they bite then it's itchy then it sucks then you get irritated",
   "medium",
-  "2025-05-15"
+  ""
 );
 
-myTasks.addTask("Home title transfer", "do this ASAP", "high", "2025-05-20");
+myTasks.addTask("Home title transfer", "Do this ASAP", "high", "2025-05-20");
 
 ListManager.createList("School");
 const school = ListManager.getList("School");

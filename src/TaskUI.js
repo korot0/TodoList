@@ -2,8 +2,9 @@ import { updateScreen } from "./UpdateScreen";
 
 export const renderTasks = (list, parent) => {
   list.getTasks().forEach((task) => {
-    const taskEl = createTaskElement(
+    const taskEl = renderTaskElement(
       task.title,
+      task.description,
       task.priority,
       task.formattedDate,
       list
@@ -12,24 +13,17 @@ export const renderTasks = (list, parent) => {
   });
 };
 
-const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
-  const li = document.createElement("li");
-  const priorityStyle = stylePriority(taskPriority);
-  li.classList.add("list-group-item", priorityStyle);
-
-  const flexContainer = document.createElement("div");
-  flexContainer.classList.add("card-li-container");
-
-  // Checkbox
-  const input = document.createElement("input");
-  input.classList.add("form-check-input");
-  input.type = "checkbox";
-  input.id = formatTaskID(taskTitle);
-
-  const label = document.createElement("label");
-  label.classList.add("ms-2");
-  label.htmlFor = input.id;
-  label.textContent = taskTitle;
+const renderTaskElement = (
+  taskTitle,
+  taskDescription,
+  taskPriority,
+  taskDueDate,
+  list
+) => {
+  const li = createLi(taskPriority);
+  const titleAndBtnFlexContainer = createFlexContainer();
+  const checkbox = createCheckbox(taskTitle);
+  const label = createLabel(taskTitle, checkbox.id);
 
   // Delete Btn
   const deleteBtn = document.createElement("button");
@@ -39,18 +33,59 @@ const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
   attachDeleteBtnListener(deleteBtn, taskTitle, list);
 
-  flexContainer.append(input, label, deleteBtn);
-  li.append(flexContainer);
+  titleAndBtnFlexContainer.append(checkbox, label, deleteBtn);
 
-  // Due Date
+  const description = createDescription(taskDescription);
+  console.log(taskDescription);
+  const dueDate = createDueDate(taskDueDate);
+
+  li.append(titleAndBtnFlexContainer, description, dueDate);
+  return li;
+};
+
+const createDescription = (taskDescription) => {
+  const description = document.createElement("span");
+  description.textContent = taskDescription;
+  return description;
+};
+
+const createLi = (taskPriority) => {
+  const li = document.createElement("li");
+  const priorityStyle = stylePriority(taskPriority);
+  li.classList.add("list-group-item", priorityStyle);
+  return li;
+};
+
+const createFlexContainer = () => {
+  const flexContainer = document.createElement("div");
+  flexContainer.classList.add("card-li-container");
+  return flexContainer;
+};
+
+const createCheckbox = (taskTitle) => {
+  const checkbox = document.createElement("input");
+  checkbox.classList.add("form-check-input");
+  checkbox.type = "checkbox";
+  checkbox.id = formatTaskID(taskTitle);
+  return checkbox;
+};
+
+const createLabel = (taskTitle, checkBoxId) => {
+  const label = document.createElement("label");
+  label.classList.add("ms-2");
+  label.htmlFor = checkBoxId;
+  label.textContent = taskTitle;
+  return label;
+};
+
+const createDueDate = (taskDueDate) => {
   if (taskDueDate !== "n/a") {
     const div = document.createElement("div");
     div.textContent = taskDueDate;
     div.classList.add("date", "text-body", "shadow-lg");
-    li.append(div);
+    return div;
   }
-
-  return li;
+  return "";
 };
 
 const attachDeleteBtnListener = (button, taskTitle, list) => {
