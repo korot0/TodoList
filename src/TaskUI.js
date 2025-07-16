@@ -28,7 +28,7 @@ const createTaskElement = (taskTitle, taskPriority, taskDueDate, list) => {
   label.textContent = taskTitle;
   const div = document.createElement("div");
   div.textContent = taskDueDate;
-  div.classList.add("date", "text-dark-emphasis", "shadow-lg");
+  div.classList.add("date", "text-body", "shadow-lg");
   label.append(div);
 
   const deleteBtn = document.createElement("button");

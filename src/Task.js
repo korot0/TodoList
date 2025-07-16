@@ -2,6 +2,7 @@ import { parseISO, format } from "date-fns";
 
 export const Task = (title, description, priority, date) => {
   const formatDate = () => {
+    if (date === "") return "N/A";
     const parsedDate = parseISO(date);
     return format(parsedDate, "MM/dd/yyyy");
   };

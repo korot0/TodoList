@@ -92,6 +92,7 @@ li:hover .task-delete-btn {
 }
 
 .date {
+  font-size: 0.8rem;
   width: fit-content;
   margin-top: 5px;
   padding: 1px 10px;
