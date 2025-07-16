@@ -4,9 +4,10 @@ export const Task = (title, description, priority, date) => {
   let formattedDate = formatDate();
 
   function formatDate() {
-    if (date === "") return;
-    const parsedDate = parseISO(date);
-    return format(parsedDate, "MM/dd/yyyy");
+    if (date !== "") {
+      const parsedDate = parseISO(date);
+      return format(parsedDate, "MM/dd/yyyy");
+    }
   }
 
   return {

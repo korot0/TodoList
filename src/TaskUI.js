@@ -24,6 +24,7 @@ const renderTaskElement = (
   const titleAndBtnFlexContainer = createFlexContainer();
   const checkbox = createCheckbox(taskTitle);
   const label = createLabel(taskTitle, checkbox.id);
+  const description = createDescription(taskDescription);
 
   // Delete Btn
   const deleteBtn = document.createElement("button");
@@ -34,11 +35,10 @@ const renderTaskElement = (
   attachDeleteBtnListener(deleteBtn, taskTitle, list);
 
   titleAndBtnFlexContainer.append(checkbox, label, deleteBtn);
+  li.append(titleAndBtnFlexContainer, description);
 
-  const description = createDescription(taskDescription);
-  const dueDate = createDueDate(taskDueDate);
+  createDueDate(taskDueDate, li);
 
-  li.append(titleAndBtnFlexContainer, description, dueDate);
   return li;
 };
 
@@ -78,12 +78,13 @@ const createDescription = (taskDescription) => {
   return description;
 };
 
-// Fix n/a
-const createDueDate = (taskDueDate) => {
-  const div = document.createElement("div");
-  div.textContent = taskDueDate;
-  div.classList.add("date", "text-body", "shadow-lg");
-  return div;
+const createDueDate = (taskDueDate, li) => {
+  if (taskDueDate !== undefined) {
+    const div = document.createElement("div");
+    div.textContent = taskDueDate;
+    div.classList.add("date", "text-body", "shadow-lg");
+    li.appendChild(div);
+  }
 };
 
 const attachDeleteBtnListener = (button, taskTitle, list) => {
