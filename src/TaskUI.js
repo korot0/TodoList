@@ -82,7 +82,7 @@ const createDueDate = (taskDueDate, li) => {
   if (taskDueDate !== undefined) {
     const div = document.createElement("div");
     div.textContent = taskDueDate;
-    div.classList.add("date", "text-body", "shadow-lg");
+    div.classList.add("date", "text-body");
     li.appendChild(div);
   }
 };
@@ -113,5 +113,4 @@ const stylePriority = (priority) => {
   if (priority === "high") return "list-group-item-danger";
   if (priority === "medium") return "list-group-item-warning";
   return "no-priority";
-  // "list-group-item-success" for green
 };

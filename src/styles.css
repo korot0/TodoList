@@ -38,7 +38,7 @@ header {
 }
 
 .card {
-  width: 30rem;
+  width: 27rem;
   padding: 0;
   overflow: auto;
 }
@@ -89,8 +89,8 @@ li:hover .task-delete-btn {
 
 .description {
   font-size: 0.9rem;
-  margin-left: 1.7rem;
-  opacity: 0.6;
+  margin-left: 1.6rem;
+  opacity: 0.7;
   max-width: fit-content;
   white-space: nowrap;
   overflow: hidden;
@@ -100,10 +100,11 @@ li:hover .task-delete-btn {
 .date {
   font-size: 0.9rem;
   width: fit-content;
-  margin-left: 1.7rem;
-  margin-top: 7px;
-  padding: 1px 10px;
+  margin-left: 1.5rem;
+  margin-top: 3px;
+  padding: 0px 10px;
   border: 1px solid var(--bs-border-color);
   border-radius: 1rem;
   background-color: var(--bs-tertiary-bg);
+  opacity: 0.9;
 }
