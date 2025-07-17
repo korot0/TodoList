@@ -1,10 +1,10 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.preferredLightColorTheme": "Night Owl Light (No Italics)",
+  "workbench.preferredLightColorTheme": "GitHub Light Default",
   "editor.scrollbar.horizontal": "auto",
   "workbench.editor.pinnedTabSizing": "compact",
   "window.density.editorTabHeight": "compact",
   "editor.tabSize": 4,
   "editor.wordWrap": "on",
-  "workbench.preferredDarkColorTheme": "Night Owl (No Italics)"
+  "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed"
 }

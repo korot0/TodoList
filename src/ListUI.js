@@ -2,11 +2,13 @@ import { handleRenameListForm } from "./ListFormHandler";
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
+import { ActiveListsManager } from "./ActiveListsManager";
 
 /* Rendering list cards in main content */
 export const renderCards = () => {
   const cardContainer = document.querySelector("#card-container");
   const lists = ListManager.getLists();
+
   lists.forEach((list) => {
     const card = createListCardElement(list.name);
     cardContainer.appendChild(card);
@@ -125,23 +127,47 @@ const createListAccordionElement = (listName) => {
   const li = document.createElement("li");
   li.classList.add("list-group-item");
 
-  const checkBoxInput = document.createElement("input");
-  checkBoxInput.classList.add("form-check-input", "me-1");
-  checkBoxInput.type = "checkbox";
-  checkBoxInput.id = formatListCheckboxID(listName);
-  checkBoxInput.checked = true;
+  const checkbox = document.createElement("input");
+  checkbox.classList.add("form-check-input", "me-1", "list-checkbox");
+  checkbox.type = "checkbox";
+  checkbox.id = formatListCheckboxID(listName);
+  checkbox.checked = true;
+  attachListCheckboxListener(checkbox);
 
   const checkBoxLabel = document.createElement("label");
   checkBoxLabel.classList.add("form-check-label", "ms-2");
-  checkBoxLabel.htmlFor = checkBoxInput.id;
+  checkBoxLabel.htmlFor = checkbox.id;
   checkBoxLabel.textContent = listName;
 
-  li.append(checkBoxInput, checkBoxLabel);
+  li.append(checkbox, checkBoxLabel);
   return li;
 };
 
 const formatListCheckboxID = (listName) =>
   `${listName.replace(/\s+/g, "-")}-checkbox`;
+
+/* Handle checked lists filter */
+const updateListCheckboxStatus = () => {
+  const checkedLists = [];
+  const checkboxes = document.querySelectorAll(".list-checkbox");
+
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      const listLabelText = document.querySelector(
+        `label[for="${checkbox.id}"]`
+      ).textContent;
+      checkedLists.push(listLabelText);
+    }
+  });
+  ActiveListsManager.setSelectedLists(checkedLists);
+  checkedLists.forEach((list) => console.log(list));
+};
+
+const attachListCheckboxListener = (checkbox) => {
+  checkbox.addEventListener("click", () => {
+    updateListCheckboxStatus();
+  });
+};
 
 /* Rendering lists in dropdown element in "+ Create Task" form */
 export const renderSelectListsAccordion = () => {
@@ -165,5 +191,3 @@ export const resetListsUI = () => {
   document.querySelector("#lists-accordion-body").textContent = "";
   document.querySelector("#list-select-container").textContent = "";
 };
-
-/* Duplicate list popup */

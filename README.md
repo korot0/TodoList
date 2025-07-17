@@ -7,6 +7,7 @@ Things learned so far:
 - When modifying arrays inside a factory function, returning the array directly (tasks) causes stale data issues because it won’t reflect internal updates. Instead, return a getter function (e.g., getTasks()) to ensure you're always accessing the current data.
 - Does an onclick function in JavaScript add a listener? Yes, assigning a function to element.onclick adds a click event listener, but only one—if you assign another later, it replaces the previous one. To add multiple listeners without overwriting, use addEventListener("click", fn) instead.
 - appendChild vs append
+- Careful not to call functions unnecessarily inside loops. Ex. Calling ActiveListsManager inside the render loop
 
 ASSIGNMENT:
 
@@ -25,6 +26,7 @@ TODO:
 
   - Edit tasks
   - Add create task button in card dropdown menu
+  - Create task button inside card
   - Add list already exists notification
   - Change due date when clicking (open calendar)
   - Change description when clicking
