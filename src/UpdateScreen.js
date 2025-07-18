@@ -1,5 +1,5 @@
 import {
-  renderCards,
+  renderLists,
   renderListsAccordion,
   renderSelectListsAccordion,
   resetListsUI,
@@ -13,5 +13,5 @@ export const updateScreen = () => {
 const renderUI = () => {
   renderSelectListsAccordion();
   renderListsAccordion();
-  renderCards();
+  renderLists();
 };

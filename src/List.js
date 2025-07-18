@@ -3,6 +3,7 @@ import { Task } from "./Task";
 export const List = (name) => {
   let tasks = [];
   let completedTasks = [];
+  let isChecked = true;
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 
@@ -22,6 +23,7 @@ export const List = (name) => {
 
   return {
     name,
+    isChecked,
     getName: () => name,
     getTasks: () => tasks,
     getCompletedTasks: () => completedTasks,

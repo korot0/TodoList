@@ -1,53 +1,54 @@
-import { handleRenameListForm } from "./ListFormHandler";
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
-import { ActiveListsManager } from "./ActiveListsManager";
 
 /* Rendering list cards in main content */
-export const renderCards = () => {
+export const renderLists = () => {
   const cardContainer = document.querySelector("#card-container");
-  const lists = ListManager.getLists();
+  const lists = ListManager.getCheckedLists();
+  renderCards(lists, cardContainer);
+};
 
+const renderCards = (lists, cardContainer) => {
   lists.forEach((list) => {
-    const card = createListCardElement(list.name);
-    cardContainer.appendChild(card);
-
-    const ulParentID = formatListULID(list.name);
-    const ulParent = document.querySelector(`#${ulParentID}`);
-
-    renderTasks(list, ulParent);
+    createCard(list, cardContainer);
   });
 };
 
-const createListCardElement = (listName) => {
+const createCard = (list, cardContainer) => {
+  createListCardElement(list.name, cardContainer);
+  const ulParentEl = assignParentIDtoTask(list.name);
+  renderTasks(list, ulParentEl);
+};
+
+const assignParentIDtoTask = (listName) => {
+  const ulParentID = formatListULID(listName);
+  return document.querySelector(`#${ulParentID}`);
+};
+
+const createListCardElement = (listName, cardContainer) => {
   const div = document.createElement("div");
   div.classList.add("card");
-
   const header = createCardHeader(listName);
-
   const ul = document.createElement("ul");
   ul.classList.add("list-group", "list-group-flush");
   ul.id = formatListULID(listName);
-
   div.append(header, ul);
+  cardContainer.append(div);
   return div;
 };
 
 const createCardHeader = (listName) => {
   const cardHeader = document.createElement("div");
   cardHeader.classList.add("card-header-container", "card-header");
-
   const h5 = document.createElement("h5");
   h5.textContent = listName;
-
-  const dropdown = renderDropdown(listName);
-
+  const dropdown = createDropdown(listName);
   cardHeader.append(h5, dropdown);
   return cardHeader;
 };
 
-const renderDropdown = (listName) => {
+const createDropdown = (listName) => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
 
@@ -131,8 +132,8 @@ const createListAccordionElement = (listName) => {
   checkbox.classList.add("form-check-input", "me-1", "list-checkbox");
   checkbox.type = "checkbox";
   checkbox.id = formatListCheckboxID(listName);
-  checkbox.checked = true;
-  attachListCheckboxListener(checkbox);
+  setListCheckboxUI(checkbox, listName);
+  attachListCheckboxListener(checkbox, listName);
 
   const checkBoxLabel = document.createElement("label");
   checkBoxLabel.classList.add("form-check-label", "ms-2");
@@ -146,36 +147,30 @@ const createListAccordionElement = (listName) => {
 const formatListCheckboxID = (listName) =>
   `${listName.replace(/\s+/g, "-")}-checkbox`;
 
-/* Handle checked lists filter */
-const updateListCheckboxStatus = () => {
-  const checkedLists = [];
-  const checkboxes = document.querySelectorAll(".list-checkbox");
-
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      const listLabelText = document.querySelector(
-        `label[for="${checkbox.id}"]`
-      ).textContent;
-      checkedLists.push(listLabelText);
-    }
-  });
-  ActiveListsManager.setSelectedLists(checkedLists);
-  checkedLists.forEach((list) => console.log(list));
+/* Handle checked lists */
+const setListCheckboxUI = (checkbox, listName) => {
+  checkbox.checked = ListManager.getList(listName).isChecked;
 };
 
-const attachListCheckboxListener = (checkbox) => {
+const updateListCheckedStatus = (listName) => {
+  const list = ListManager.getList(listName);
+  list.isChecked = !list.isChecked;
+};
+
+const attachListCheckboxListener = (checkbox, listName) => {
   checkbox.addEventListener("click", () => {
-    updateListCheckboxStatus();
+    updateListCheckedStatus(listName);
+    updateScreen();
   });
 };
 
 /* Rendering lists in dropdown element in "+ Create Task" form */
 export const renderSelectListsAccordion = () => {
-  const container = document.querySelector("#list-select-container");
+  const cardContainer = document.querySelector("#list-select-container");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
     const optionEl = createSelectListElement(list.name);
-    container.appendChild(optionEl);
+    cardContainer.appendChild(optionEl);
   });
 };
 

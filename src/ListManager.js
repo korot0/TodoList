@@ -5,6 +5,8 @@ export const ListManager = (() => {
 
   const getList = (listName) => lists.find((list) => list.name === listName);
 
+  const getCheckedLists = () => lists.filter((list) => list.isChecked === true);
+
   const renameList = (currentName, newName) => {
     if (isDuplicateList(newName)) return false;
     const list = getList(currentName);
@@ -25,6 +27,7 @@ export const ListManager = (() => {
 
   return {
     getLists: () => lists,
+    getCheckedLists,
     renameList,
     getList,
     createList,
