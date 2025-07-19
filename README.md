@@ -25,13 +25,11 @@ TODO:
 - Features:
 
   - Edit tasks
-  - Add create task button in card dropdown menu
   - Create task button inside card
   - Add list already exists notification
   - Change due date when clicking (open calendar)
   - Change description when clicking
   - Filter tasks
-  - Filter lists
   - Local storage
   - Completed tasks dropdown
   - Add no tasks currently
