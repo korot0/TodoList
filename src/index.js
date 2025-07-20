@@ -5,6 +5,9 @@ import { handleListForm } from "./ListFormHandler";
 import { handleTaskForm } from "./TaskFormHandler";
 import { ListManager } from "./ListManager";
 import { updateScreen } from "./UpdateScreen";
+import { attachFilterBtnListener } from "./TaskFilters";
+
+attachFilterBtnListener();
 
 // For debugging - delete later
 window.ListManager = ListManager;

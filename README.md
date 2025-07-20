@@ -8,6 +8,7 @@ Things learned so far:
 - Does an onclick function in JavaScript add a listener? Yes, assigning a function to element.onclick adds a click event listener, but only one—if you assign another later, it replaces the previous one. To add multiple listeners without overwriting, use addEventListener("click", fn) instead.
 - appendChild vs append
 - Careful not to call functions unnecessarily inside loops. Ex. Calling ActiveListsManager inside the render loop
+- You were calling TaskFilterManager.setCurrentFilter(...), but TaskFilterManager is a factory function — it returns an object. So you need to first create an instance of it. Solution: Wrap IIFE to make it a singleton
 
 ASSIGNMENT:
 

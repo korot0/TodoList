@@ -1,4 +1,5 @@
 import { Task } from "./Task";
+import { TaskFilterManager } from "./TaskFilters";
 
 export const List = (name) => {
   let tasks = [];
@@ -6,6 +7,10 @@ export const List = (name) => {
   let isChecked = true;
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
+
+  const getTasks = () => {
+    return TaskFilterManager.getFilteredTasks(tasks);
+  };
 
   const addTask = (title, description, priority, dueDate) => {
     tasks.push(Task(title, description, priority, dueDate));
@@ -25,8 +30,8 @@ export const List = (name) => {
     name,
     isChecked,
     getName: () => name,
-    getTasks: () => tasks,
     getCompletedTasks: () => completedTasks,
+    getTasks,
     getTask,
     addTask,
     removeTask,
