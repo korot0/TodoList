@@ -1,3 +1,4 @@
+import { updateScreen } from "./UpdateScreen";
 import {
   isToday,
   isTomorrow,
@@ -5,7 +6,6 @@ import {
   startOfDay,
   isBefore,
 } from "date-fns";
-import { updateScreen } from "./UpdateScreen";
 
 const TaskFilters = (() => {
   const today = startOfDay(new Date());
@@ -71,10 +71,27 @@ export const attachFilterBtnListener = () => {
   const buttons = document.querySelectorAll(".filter-btn");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      const filter = button.textContent.trim();
-      TaskFilterManager.setCurrentFilter(filter);
-      // button.classList.add("active");
-      updateScreen();
+      onFilterBtnClick(buttons, button);
     });
   });
+};
+
+const onFilterBtnClick = (buttons, button) => {
+  applyFilter(button);
+  removePreviousHighlight(buttons);
+  highlightActiveBtn(button);
+  updateScreen();
+};
+
+const highlightActiveBtn = (button) => button.classList.add("active");
+
+const removePreviousHighlight = (buttons) => {
+  buttons.forEach((button) => {
+    button.classList.remove("active");
+  });
+};
+
+const applyFilter = (button) => {
+  const filter = button.textContent.trim();
+  TaskFilterManager.setCurrentFilter(filter);
 };
