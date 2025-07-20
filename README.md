@@ -34,3 +34,5 @@ TODO:
   - Completed tasks dropdown
   - Add no tasks currently
   - Change delete button to three-dots dropdown
+  - Focus when opening modals
+  - Clear modals when hitting close
