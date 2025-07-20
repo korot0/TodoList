@@ -8,30 +8,24 @@ import {
 import { updateScreen } from "./UpdateScreen";
 
 const TaskFilters = (() => {
-  const filterByAllTasks = (tasks) => {
-    return tasks;
-  };
+  const today = startOfDay(new Date());
 
-  const filterByHighPriority = (tasks) => {
-    return tasks.filter((task) => task.priority === "high");
-  };
+  const filterByAllTasks = (tasks) => tasks;
 
-  const filterByDueToday = (tasks) => {
-    return tasks.filter((task) => isToday(task.dueDate));
-  };
+  const filterByHighPriority = (tasks) =>
+    tasks.filter((task) => task.priority === "high");
 
-  const filterByDueTomorrow = (tasks) => {
-    return tasks.filter((task) => isTomorrow(task.dueDate));
-  };
+  const filterByDueToday = (tasks) =>
+    tasks.filter((task) => isToday(task.dueDate));
 
-  const filterByDueThisWeek = (tasks) => {
-    return tasks.filter((task) => isThisWeek(task.dueDate));
-  };
+  const filterByDueTomorrow = (tasks) =>
+    tasks.filter((task) => isTomorrow(task.dueDate));
 
-  const filterByPastDue = (tasks) => {
-    const today = startOfDay(new Date());
-    return tasks.filter((task) => isBefore(task.dueDate, today));
-  };
+  const filterByDueThisWeek = (tasks) =>
+    tasks.filter((task) => isThisWeek(task.dueDate));
+
+  const filterByPastDue = (tasks) =>
+    tasks.filter((task) => isBefore(task.dueDate, today));
 
   return {
     filterByAllTasks,
