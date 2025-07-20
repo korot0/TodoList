@@ -2,9 +2,10 @@ import { Task } from "./Task";
 import { TaskFilterManager } from "./TaskFilters";
 
 export const List = (name) => {
+  let isChecked = true;
+
   let tasks = [];
   let completedTasks = [];
-  let isChecked = true;
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 

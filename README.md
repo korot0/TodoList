@@ -22,6 +22,7 @@ TODO:
   - Fix list accordion items margins
   - Fix long lists names in accordion
   - Change task dropdown button size
+  - Dark/Light mode
 
 - Features:
 
