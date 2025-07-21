@@ -26,7 +26,7 @@ TODO:
 
 - Features:
 
-  - Edit tasks
+  - Expand a task to edit/view details
   - Create task button inside card
   - Add list already exists notification
   - Change due date when clicking (open calendar)
