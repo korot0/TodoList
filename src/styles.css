@@ -54,41 +54,32 @@ h5 {
 }
 
 .list-dropdown,
-.task-delete-btn {
-  display: none;
+.task-dropdown {
   margin-left: auto;
-  border: none;
-  padding: 0;
-  background-color: inherit;
-  color: inherit;
-}
-
-.list-dropdown {
-  background-color: initial;
   height: 0;
-}
-
-.list-dropdown {
-  display: inline;
-}
-
-li:hover .task-delete-btn {
-  display: inline;
 }
 
 .list-dropdown-btn {
   border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
   background-color: transparent;
+}
+
+.task-dropdown {
+  color: var(--bs-body-color);
+  background-color: inherit;
+  border: none;
+  display: none;
+}
+
+li:hover .task-dropdown {
+  display: inline;
 }
 
 .description {
   font-size: 0.9rem;
   margin-left: 1.6rem;
   opacity: 0.7;
-  max-width: fit-content;
+  max-width: 310px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

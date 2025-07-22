@@ -44,7 +44,9 @@ const createCardHeader = (listName) => {
   cardHeader.classList.add("card-header-container", "card-header");
   const h5 = document.createElement("h5");
   h5.textContent = listName;
+
   const dropdown = createDropdown(listName);
+
   cardHeader.append(h5, dropdown);
   return cardHeader;
 };

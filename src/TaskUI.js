@@ -39,21 +39,58 @@ const renderTaskElement = (
   const checkbox = createCheckbox(taskTitle);
   const label = createLabel(taskTitle, checkbox.id);
   const description = createDescription(taskDescription);
+  const dropdown = createDropdown(taskTitle, list);
 
-  // Delete Btn
-  const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("material-symbols-outlined", "task-delete-btn");
-  deleteBtn.textContent = "delete";
-  deleteBtn.setAttribute("data-bs-toggle", "modal");
-  deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
-  attachDeleteBtnListener(deleteBtn, taskTitle, list);
-
-  titleAndBtnFlexContainer.append(checkbox, label, deleteBtn);
+  titleAndBtnFlexContainer.append(checkbox, label, dropdown);
   li.append(titleAndBtnFlexContainer, description);
 
   createDueDate(taskDueDate, li);
 
   return li;
+};
+
+const createDropdown = (taskTitle, list) => {
+  const div = document.createElement("div");
+  div.classList.add("list-dropdown");
+
+  const button = document.createElement("button");
+  button.classList.add("material-symbols-outlined", "task-dropdown");
+  button.setAttribute("data-bs-toggle", "dropdown");
+  button.setAttribute("aria-expanded", "false");
+  button.textContent = "more_vert";
+
+  const ul = document.createElement("ul");
+  ul.classList.add("dropdown-menu");
+
+  const detailsLi = document.createElement("li");
+  const detailsBtn = document.createElement("button");
+  detailsBtn.classList.add("dropdown-item");
+  // detailsBtn.setAttribute("data-bs-toggle", "modal");
+  // detailsBtn.setAttribute("data-bs-target", "#renameListModal");
+  detailsBtn.textContent = "View and Edit";
+  detailsLi.appendChild(detailsBtn);
+  // detailsBtnListener(detailsBtn, taskTitle);
+
+  const deleteLi = document.createElement("li");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("dropdown-item", "text-danger");
+  deleteBtn.setAttribute("data-bs-toggle", "modal");
+  deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
+  deleteBtn.textContent = "Delete";
+  deleteLi.appendChild(deleteBtn);
+  attachDeleteBtnListener(deleteBtn, taskTitle, list);
+
+  ul.append(detailsLi, deleteLi);
+  ul.append(deleteLi);
+  div.append(button, ul);
+  return div;
+};
+
+const attachDeleteBtnListener = (button, taskTitle, list) => {
+  button.addEventListener("click", () => {
+    renderDeleteTextConfirmation(taskTitle);
+    deleteTaskConfirmation(taskTitle, list);
+  });
 };
 
 const createLi = (taskPriority) => {
@@ -99,13 +136,6 @@ const createDueDate = (taskDueDate, li) => {
     div.classList.add("date", "text-body");
     li.appendChild(div);
   }
-};
-
-const attachDeleteBtnListener = (button, taskTitle, list) => {
-  button.addEventListener("click", () => {
-    renderDeleteTextConfirmation(taskTitle);
-    deleteTaskConfirmation(taskTitle, list);
-  });
 };
 
 const deleteTaskConfirmation = (taskTitle, list) => {
