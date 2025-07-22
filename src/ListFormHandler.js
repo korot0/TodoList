@@ -1,4 +1,5 @@
 import { ListManager } from "./ListManager";
+import { showListToast } from "./ListUI";
 import { updateScreen } from "./UpdateScreen";
 
 // Not srp compliant? might need to split, currently calling too many functions
@@ -11,7 +12,7 @@ const onListFormSubmit = (e) => {
 
 const submitList = () => {
   const name = document.querySelector("#list-name").value;
-  ListManager.createList(name);
+  if (ListManager.createList(name) === false) showListToast();
 };
 
 const resetListModal = () => {

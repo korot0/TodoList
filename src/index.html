@@ -20,7 +20,6 @@
     </header>
     <!-- SIDEBAR ---------------------------------------------------------------------------------------------------------------------->
     <div id="sidebar" class="px-3">
-      <!-- CREATE TASK BUTTON -->
       <button
         id="createTaskBtn"
         type="button"
@@ -34,7 +33,7 @@
       <div class="list-group list-group">
         <button
           type="button"
-          class="filter-btn list-group-item list-group-item-action"
+          class="filter-btn list-group-item list-group-item-action active"
         >
           All Tasks
         </button>
@@ -78,7 +77,7 @@
         + Create List
       </button>
       <!-- LISTS ACCORDION -->
-      <div class="accordion" id="lists-accordion">
+      <div class="accordion accordon-flush" id="lists-accordion">
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button
@@ -396,6 +395,27 @@
             />
           </div>
         </div>
+      </div>
+    </div>
+    <!-- LIST TOAST -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="list-toast"
+        class="toast text-bg-warning border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Whoops!</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">List already exists!</div>
       </div>
     </div>
   </body>

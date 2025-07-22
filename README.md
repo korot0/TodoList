@@ -27,15 +27,8 @@ TODO:
 - Features:
 
   - Expand a task to edit/view details
-  - Create task button inside card
-  - Add list already exists notification
-  - Change due date when clicking (open calendar)
-  - Change description when clicking
-  - Filter tasks
   - Local storage
   - Completed tasks dropdown
   - Add no tasks currently
   - Change delete button to three-dots dropdown
-  - Focus when opening modals
-  - Clear modals when hitting close
-  - Show how many tasks in lists, and how many completed tasks
+  - Completed Tasks Dropdown

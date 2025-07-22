@@ -1,3 +1,4 @@
+import { Toast } from "bootstrap";
 import { ListManager } from "./ListManager";
 import { renderTasks } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
@@ -185,4 +186,11 @@ export const resetListsUI = () => {
   document.querySelector("#card-container").textContent = "";
   document.querySelector("#lists-accordion-body").textContent = "";
   document.querySelector("#list-select-container").textContent = "";
+};
+
+/* List Toast */
+export const showListToast = () => {
+  const listToast = document.getElementById("list-toast");
+  const toast = Toast.getOrCreateInstance(listToast);
+  toast.show();
 };
