@@ -1,11 +1,16 @@
-import { parseISO, format } from "date-fns";
+import { parseISO, format, isToday, isTomorrow } from "date-fns";
 
 export const Task = (title, description, priority, date) => {
+  const parsedDate = parseISO(date);
+  const today = isToday(parsedDate);
+  const tomorrow = isTomorrow(parsedDate);
+
   let formattedDate = formatDate();
 
   function formatDate() {
     if (date !== "") {
-      const parsedDate = parseISO(date);
+      if (today) return "Today";
+      else if (tomorrow) return "Tomorrow";
       return format(parsedDate, "MM/dd/yyyy");
     }
   }

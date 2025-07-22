@@ -38,3 +38,4 @@ TODO:
   - Change delete button to three-dots dropdown
   - Focus when opening modals
   - Clear modals when hitting close
+  - Show how many tasks in lists, and how many completed tasks
