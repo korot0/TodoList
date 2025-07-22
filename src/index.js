@@ -27,12 +27,5 @@ myTasks.addTask(
 myTasks.addTask("Home title transfer", "Do this ASAP", "high", "2025-05-20");
 
 ListManager.createList("School");
-const school = ListManager.getList("School");
-school.addTask(
-  "Transfer transcripts",
-  "Need to check daily for posted grades",
-  "medium",
-  "2025-05-14"
-);
 
 updateScreen();

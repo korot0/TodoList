@@ -1,7 +1,13 @@
 import { updateScreen } from "./UpdateScreen";
 
 export const renderTasks = (list, parent) => {
-  list.getTasks().forEach((task) => {
+  const tasks = list.getTasks();
+  if (tasks.length === 0) renderEmptyState(parent);
+  else renderTaskList(tasks, parent, list);
+};
+
+const renderTaskList = (tasks, parent, list) => {
+  tasks.forEach((task) => {
     const taskEl = renderTaskElement(
       task.title,
       task.description,
@@ -11,6 +17,13 @@ export const renderTasks = (list, parent) => {
     );
     parent.appendChild(taskEl);
   });
+};
+
+const renderEmptyState = (parent) => {
+  const span = document.createElement("span");
+  span.classList.add("material-symbols-outlined", "text-center", "mt-4");
+  span.textContent = "done_all";
+  parent.appendChild(span);
 };
 
 const renderTaskElement = (

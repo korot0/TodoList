@@ -29,6 +29,4 @@ TODO:
   - Expand a task to edit/view details
   - Local storage
   - Completed tasks dropdown
-  - Add no tasks currently
   - Change delete button to three-dots dropdown
-  - Completed Tasks Dropdown
