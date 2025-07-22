@@ -27,5 +27,5 @@ TODO:
 - Features:
 
   - Local storage
-  - Mark task as completed
+  - Task Completion
   - Change delete button to three-dots dropdown (delete, edit, view details)

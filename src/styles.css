@@ -111,3 +111,8 @@ li:hover .task-delete-btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.list-empty-state {
+  font-weight: bold;
+  font-size: 3rem;
+}

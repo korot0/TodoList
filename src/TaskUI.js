@@ -21,8 +21,9 @@ const renderTaskList = (tasks, parent, list) => {
 
 const renderEmptyState = (parent) => {
   const span = document.createElement("span");
-  span.classList.add("material-symbols-outlined", "text-center", "mt-4");
-  span.textContent = "done_all";
+  span.classList.add("text-center");
+  span.textContent = "•ᴗ•";
+  span.classList.add("list-empty-state");
   parent.appendChild(span);
 };
 
