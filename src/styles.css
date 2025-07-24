@@ -34,7 +34,6 @@ header {
 }
 
 .card {
-  min-height: 130px;
   width: 25rem;
   padding: 0;
   overflow: auto;
@@ -104,6 +103,6 @@ li:hover .task-dropdown {
 }
 
 .list-empty-state {
-  font-weight: bold;
   font-size: 3rem;
+  text-align: center;
 }

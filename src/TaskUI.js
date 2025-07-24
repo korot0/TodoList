@@ -21,7 +21,6 @@ const renderTaskList = (tasks, parent, list) => {
 
 const renderEmptyState = (parent) => {
   const span = document.createElement("span");
-  span.classList.add("text-center");
   span.textContent = "•ᴗ•";
   span.classList.add("list-empty-state");
   parent.appendChild(span);
@@ -36,7 +35,7 @@ const renderTaskElement = (
 ) => {
   const li = createLi(taskPriority);
   const titleAndBtnFlexContainer = createFlexContainer();
-  const checkbox = createCheckbox(taskTitle);
+  const checkbox = createCheckbox(taskTitle, list);
   const label = createLabel(taskTitle, checkbox.id);
   const description = createDescription(taskDescription);
   const dropdown = createDropdown(taskTitle, list);
@@ -67,7 +66,7 @@ const createDropdown = (taskTitle, list) => {
   detailsBtn.classList.add("dropdown-item");
   // detailsBtn.setAttribute("data-bs-toggle", "modal");
   // detailsBtn.setAttribute("data-bs-target", "#renameListModal");
-  detailsBtn.textContent = "View and Edit";
+  detailsBtn.textContent = "Details";
   detailsLi.appendChild(detailsBtn);
   // detailsBtnListener(detailsBtn, taskTitle);
 
@@ -106,12 +105,20 @@ const createFlexContainer = () => {
   return flexContainer;
 };
 
-const createCheckbox = (taskTitle) => {
+const createCheckbox = (taskTitle, list) => {
   const checkbox = document.createElement("input");
   checkbox.classList.add("form-check-input");
   checkbox.type = "checkbox";
   checkbox.id = formatTaskID(taskTitle);
+  attachCheckboxListener(checkbox, taskTitle, list);
   return checkbox;
+};
+
+const attachCheckboxListener = (checkbox, taskTitle, list) => {
+  checkbox.addEventListener("click", () => {
+    list.completeTask(taskTitle);
+    console.log("clicked");
+  });
 };
 
 const createLabel = (taskTitle, checkBoxId) => {

@@ -23,6 +23,8 @@ TODO:
   - Fix long lists names in accordion
   - Change task dropdown button size
   - Dark/Light mode
+  - Bootstrap dropdown outside container
+  - Center empty state smiley face
 
 - Features:
 
