@@ -31,6 +31,19 @@ TODO:
   - Bootstrap dropdown outside container
   - Center empty state smiley face
 
+- JS:
+
+  - Refactor srp violating functions
+    - createTaskElement - TaskUI
+    - createCompletedTaskElement - TaskUI
+    - createListAccordionElement - ListUI
+    - createListCardElement - ListUI
+    - createCardHeader - ListUI
+    - createDropdown - ListUI
+    - onListFormSubmit - ListFormHandler
+    - onTaskFormSubmit - TaskFormHandler
+    - Task object
+
 - Features:
 
   - Local storage
