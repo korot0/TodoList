@@ -236,7 +236,7 @@ const applyCompletedCheckboxStyle = (checkbox) => {
 
 const createCompletedTasksHeader = () => {
   const header = document.createElement("h6");
-  header.textContent = "Completed Tasks:";
+  header.textContent = "Completed:";
   header.classList.add("completed-tasks-header");
   return header;
 };
