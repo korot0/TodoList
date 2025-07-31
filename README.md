@@ -14,6 +14,10 @@ ASSIGNMENT:
 
 TODO:
 
+- HTML:
+
+  - Fix validator issues
+
 - CSS:
 
   - Make global font smaller
