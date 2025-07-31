@@ -9,9 +9,6 @@ export const List = (name) => {
 
   const getTask = (taskTitle) => tasks.find((task) => task.title === taskTitle);
 
-  const getCompletedTask = (taskTitle) =>
-    completedTasks.find((task) => task.title === taskTitle);
-
   const getTasks = () => {
     return TaskFilterManager.getFilteredTasks(tasks);
   };
@@ -20,14 +17,18 @@ export const List = (name) => {
     tasks.push(Task(title, description, priority, dueDate));
   };
 
-  const removeTask = (taskTitle) => {
-    tasks = tasks.filter((t) => t.title !== taskTitle);
-  };
-
   const completeTask = (taskTitle) => {
     const task = getTask(taskTitle);
     completedTasks.push(task);
     tasks = tasks.filter((t) => t.title !== taskTitle);
+  };
+
+  const removeTask = (taskTitle) => {
+    tasks = tasks.filter((t) => t.title !== taskTitle);
+  };
+
+  const removeCompletedTask = (taskTitle) => {
+    completedTasks = completedTasks.filter((t) => t.title !== taskTitle);
   };
 
   return {
@@ -39,6 +40,7 @@ export const List = (name) => {
     getTask,
     addTask,
     removeTask,
+    removeCompletedTask,
     completeTask,
   };
 };

@@ -1,6 +1,6 @@
 import { Toast } from "bootstrap";
 import { ListManager } from "./ListManager";
-import { renderTasks } from "./TaskUI";
+import { displayTasksUI } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
 
 /* Rendering list cards in main content */
@@ -19,7 +19,7 @@ const renderCards = (lists, cardContainer) => {
 const createCard = (list, cardContainer) => {
   createListCardElement(list.name, cardContainer);
   const ulParentEl = assignParentIDtoTask(list.name);
-  renderTasks(list, ulParentEl);
+  displayTasksUI(list, ulParentEl);
 };
 
 const assignParentIDtoTask = (listName) => {

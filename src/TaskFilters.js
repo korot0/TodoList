@@ -44,6 +44,8 @@ export const TaskFilterManager = (() => {
     currentFilter = filter;
   };
 
+  const getCurrentFilter = () => currentFilter;
+
   const getFilteredTasks = (tasks) => {
     switch (currentFilter) {
       case "All Tasks":
@@ -64,6 +66,7 @@ export const TaskFilterManager = (() => {
   return {
     setCurrentFilter,
     getFilteredTasks,
+    getCurrentFilter,
   };
 })();
 

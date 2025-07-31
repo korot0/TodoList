@@ -106,3 +106,26 @@ li:hover .task-dropdown {
   font-size: 3rem;
   text-align: center;
 }
+
+.completed-tasks-header {
+  margin: 10px 16px;
+}
+
+.completed-task-label {
+  cursor: default !important;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--bs-body-color);
+}
+
+.completed-task-delete-btn {
+  margin-left: auto;
+  border: none;
+  background-color: inherit;
+  display: none;
+  height: 0;
+}
+
+li:hover .completed-task-delete-btn {
+  display: inline;
+}

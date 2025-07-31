@@ -1,14 +1,29 @@
+import { ListManager } from "./ListManager";
+import { TaskFilterManager } from "./TaskFilters";
 import { updateScreen } from "./UpdateScreen";
 
-export const renderTasks = (list, parent) => {
-  const tasks = list.getTasks();
-  if (tasks.length === 0) renderEmptyState(parent);
-  else renderTaskList(tasks, parent, list);
+export const displayTasksUI = (list, parent) => {
+  displayActiveTasks(list, parent);
+  displayCompletedTasks(list, parent);
 };
 
-const renderTaskList = (tasks, parent, list) => {
+const displayActiveTasks = (list, parent) => {
+  const tasks = list.getTasks();
+  if (tasks.length === 0) renderEmptyState(parent);
+  else renderTasks(list, parent, tasks);
+};
+
+const displayCompletedTasks = (list, parent) => {
+  if (TaskFilterManager.getCurrentFilter() !== "All Tasks") return;
+
+  const completedTasks = list.getCompletedTasks();
+  if (completedTasks.length !== 0) renderCompletedTasksHeader(parent);
+  renderCompletedTasks(parent, completedTasks, list);
+};
+
+const renderTasks = (list, parent, tasks) => {
   tasks.forEach((task) => {
-    const taskEl = renderTaskElement(
+    const taskEl = createTaskElement(
       task.title,
       task.description,
       task.priority,
@@ -26,7 +41,7 @@ const renderEmptyState = (parent) => {
   parent.appendChild(span);
 };
 
-const renderTaskElement = (
+const createTaskElement = (
   taskTitle,
   taskDescription,
   taskPriority,
@@ -39,12 +54,9 @@ const renderTaskElement = (
   const label = createLabel(taskTitle, checkbox.id);
   const description = createDescription(taskDescription);
   const dropdown = createDropdown(taskTitle, list);
-
   titleAndBtnFlexContainer.append(checkbox, label, dropdown);
   li.append(titleAndBtnFlexContainer, description);
-
   createDueDate(taskDueDate, li);
-
   return li;
 };
 
@@ -117,7 +129,7 @@ const createCheckbox = (taskTitle, list) => {
 const attachCheckboxListener = (checkbox, taskTitle, list) => {
   checkbox.addEventListener("click", () => {
     list.completeTask(taskTitle);
-    console.log("clicked");
+    updateScreen();
   });
 };
 
@@ -164,4 +176,91 @@ const stylePriority = (priority) => {
   if (priority === "high") return "list-group-item-danger";
   if (priority === "medium") return "list-group-item-warning";
   return "no-priority";
+};
+
+/* COMPLETED TASKS */
+const renderCompletedTasks = (parent, completedTasks, list) => {
+  completedTasks.forEach((task) => {
+    const completedTaskEl = createCompletedTaskElement(
+      task.title,
+      task.description,
+      task.priority,
+      task.formattedDate,
+      list
+    );
+    parent.appendChild(completedTaskEl);
+  });
+};
+
+const createCompletedTaskElement = (
+  taskTitle,
+  taskDescription,
+  taskPriority,
+  taskDueDate,
+  list
+) => {
+  const li = createLi(taskPriority);
+  const titleAndBtnFlexContainer = createFlexContainer();
+  const checkbox = createCompletedCheckbox();
+  const label = createLabel(taskTitle, checkbox.id);
+  const description = createDescription(taskDescription);
+  const deleteBtn = createDeleteBtn(list, taskTitle);
+  titleAndBtnFlexContainer.append(checkbox, label, deleteBtn);
+  applyCompletedTaskStyle(li, label);
+  li.append(titleAndBtnFlexContainer, description);
+  createDueDate(taskDueDate, li);
+  return li;
+};
+
+const applyCompletedTaskStyle = (li, label) => {
+  li.style.opacity = "0.8";
+  label.classList.add("completed-task-label");
+};
+
+const createCompletedCheckbox = () => {
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  applyCompletedCheckboxStyle(checkbox);
+  return checkbox;
+};
+
+const applyCompletedCheckboxStyle = (checkbox) => {
+  checkbox.classList.add("form-check-input");
+  checkbox.checked = true;
+  checkbox.style.pointerEvents = "none";
+};
+
+const createCompletedTasksHeader = () => {
+  const header = document.createElement("h6");
+  header.textContent = "Completed Tasks:";
+  header.classList.add("completed-tasks-header");
+  return header;
+};
+
+const createDeleteBtn = (list, taskTitle) => {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "delete";
+  deleteBtn.classList.add(
+    "material-symbols-outlined",
+    "completed-task-delete-btn"
+  );
+  attachCompletedTaskDeleteListener(deleteBtn, list, taskTitle);
+  return deleteBtn;
+};
+
+const attachCompletedTaskDeleteListener = (deleteBtn, list, taskTitle) => {
+  deleteBtn.addEventListener("click", () =>
+    handleCompletedTaskDelete(list, taskTitle)
+  );
+};
+
+const handleCompletedTaskDelete = (list, taskTitle) => {
+  const targetList = ListManager.getList(list.name);
+  targetList.removeCompletedTask(taskTitle);
+  updateScreen();
+};
+
+const renderCompletedTasksHeader = (parent) => {
+  const header = createCompletedTasksHeader();
+  parent.appendChild(header);
 };
