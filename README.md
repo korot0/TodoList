@@ -29,7 +29,6 @@ TODO:
   - Change task dropdown button size
   - Dark/Light mode
   - Bootstrap dropdown outside container
-  - Center empty state smiley face
 
 - JS:
 

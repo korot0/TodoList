@@ -36,8 +36,8 @@ const renderTasks = (list, parent, tasks) => {
 
 const renderEmptyState = (parent) => {
   const span = document.createElement("span");
-  span.textContent = "•ᴗ•";
-  span.classList.add("list-empty-state");
+  span.textContent = "family_star";
+  span.classList.add("material-symbols-outlined", "list-empty-state");
   parent.appendChild(span);
 };
 
