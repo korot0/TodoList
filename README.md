@@ -20,15 +20,12 @@ TODO:
 
 - CSS:
 
-  - Make global font smaller
-  - Fix empty card height
   - Fix card height
   - Fix "My Tasks" width when adding a long title. Ex "Loooooooooooooong"
   - Fix list accordion items margins
   - Fix long lists names in accordion
   - Change task dropdown button size
   - Dark/Light mode
-  - Bootstrap dropdown outside container
 
 - JS:
 
