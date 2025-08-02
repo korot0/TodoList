@@ -80,11 +80,11 @@ const createDropdown = (taskTitle, list) => {
   const detailsLi = document.createElement("li");
   const detailsBtn = document.createElement("button");
   detailsBtn.classList.add("dropdown-item");
-  // detailsBtn.setAttribute("data-bs-toggle", "modal");
-  // detailsBtn.setAttribute("data-bs-target", "#renameListModal");
+  detailsBtn.setAttribute("data-bs-toggle", "modal");
+  detailsBtn.setAttribute("data-bs-target", "#details-modal");
   detailsBtn.textContent = "Details";
   detailsLi.appendChild(detailsBtn);
-  // detailsBtnListener(detailsBtn, taskTitle);
+  attachDetailsBtnListener(detailsBtn, taskTitle);
 
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
@@ -101,10 +101,9 @@ const createDropdown = (taskTitle, list) => {
   return div;
 };
 
-const attachDeleteBtnListener = (button, taskTitle, list) => {
+const attachDetailsBtnListener = (button, taskTitle, list) => {
   button.addEventListener("click", () => {
-    renderDeleteTextConfirmation(taskTitle);
-    deleteTaskConfirmation(taskTitle, list);
+    console.log(taskTitle);
   });
 };
 
@@ -159,6 +158,13 @@ const createDueDate = (taskDueDate, li) => {
     div.classList.add("date", "text-body");
     li.appendChild(div);
   }
+};
+
+const attachDeleteBtnListener = (button, taskTitle, list) => {
+  button.addEventListener("click", () => {
+    renderDeleteTextConfirmation(taskTitle);
+    deleteTaskConfirmation(taskTitle, list);
+  });
 };
 
 const deleteTaskConfirmation = (taskTitle, list) => {
