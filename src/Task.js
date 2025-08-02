@@ -1,18 +1,28 @@
 import { parseISO, format, isToday, isTomorrow } from "date-fns";
 
 export const Task = (title, description, priority, date) => {
-  const parsedDate = parseISO(date);
-  const today = isToday(parsedDate);
-  const tomorrow = isTomorrow(parsedDate);
+  let parsedDate = parseISO(date);
+  let dueDate = date.replace(/-/g, "/"); // https://stackoverflow.com/questions/68807970/parse-function-in-date-fns-returns-one-day-previous-value
 
-  let formattedDate = formatDate();
+  function updateDerivedDateValues() {
+    parsedDate = parseISO(date);
+    dueDate = date.replace(/-/g, "/");
+  }
 
-  function formatDate() {
+  function getFormattedDate() {
     if (date !== "") {
-      if (today) return "Today";
-      else if (tomorrow) return "Tomorrow";
+      if (isToday(parsedDate)) return "Today";
+      if (isTomorrow(parsedDate)) return "Tomorrow";
       return format(parsedDate, "MM/dd/yyyy");
     }
+  }
+
+  function editDetails(e_title, e_description, e_priority, e_date) {
+    title = e_title;
+    description = e_description;
+    priority = e_priority;
+    date = e_date;
+    updateDerivedDateValues();
   }
 
   return {
@@ -20,7 +30,12 @@ export const Task = (title, description, priority, date) => {
     description,
     priority,
     date,
-    formattedDate,
-    dueDate: date.replace(/-/g, "/"), // https://stackoverflow.com/questions/68807970/parse-function-in-date-fns-returns-one-day-previous-value
+    editDetails,
+    get formattedDate() {
+      return getFormattedDate();
+    },
+    get dueDate() {
+      return dueDate;
+    },
   };
 };
