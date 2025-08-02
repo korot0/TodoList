@@ -59,14 +59,14 @@ const createTaskElement = (
   const checkbox = createCheckbox(taskTitle, list);
   const label = createLabel(taskTitle, checkbox.id);
   const description = createDescription(taskDescription);
-  const dropdown = createDropdown(taskTitle, task);
+  const dropdown = createDropdown(taskTitle, task, list);
   titleAndBtnFlexContainer.append(checkbox, label, dropdown);
   li.append(titleAndBtnFlexContainer, description);
   createDueDate(taskDueDate, li);
   return li;
 };
 
-const createDropdown = (taskTitle, task) => {
+const createDropdown = (taskTitle, task, list) => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
 
@@ -95,7 +95,7 @@ const createDropdown = (taskTitle, task) => {
   deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
   deleteBtn.textContent = "Delete";
   deleteLi.appendChild(deleteBtn);
-  attachDeleteBtnListener(deleteBtn, taskTitle);
+  attachDeleteBtnListener(deleteBtn, taskTitle, list);
 
   ul.append(detailsLi, deleteLi);
   ul.append(deleteLi);
