@@ -64,7 +64,7 @@ const createTaskElement = (
   return li;
 };
 
-const createDropdown = (taskTitle, list) => {
+const createDropdown = (taskTitle) => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
 
@@ -93,7 +93,7 @@ const createDropdown = (taskTitle, list) => {
   deleteBtn.setAttribute("data-bs-target", "#deleteTaskModal");
   deleteBtn.textContent = "Delete";
   deleteLi.appendChild(deleteBtn);
-  attachDeleteBtnListener(deleteBtn, taskTitle, list);
+  attachDeleteBtnListener(deleteBtn, taskTitle);
 
   ul.append(detailsLi, deleteLi);
   ul.append(deleteLi);
@@ -101,7 +101,7 @@ const createDropdown = (taskTitle, list) => {
   return div;
 };
 
-const attachDetailsBtnListener = (button, taskTitle, list) => {
+const attachDetailsBtnListener = (button, taskTitle) => {
   button.addEventListener("click", () => {
     console.log(taskTitle);
   });
