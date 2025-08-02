@@ -28,7 +28,8 @@ const renderTasks = (list, parent, tasks) => {
       task.description,
       task.priority,
       task.formattedDate,
-      list
+      list,
+      task
     );
     parent.appendChild(taskEl);
   });
@@ -50,21 +51,22 @@ const createTaskElement = (
   taskDescription,
   taskPriority,
   taskDueDate,
-  list
+  list,
+  task
 ) => {
   const li = createLi(taskPriority);
   const titleAndBtnFlexContainer = createFlexContainer();
   const checkbox = createCheckbox(taskTitle, list);
   const label = createLabel(taskTitle, checkbox.id);
   const description = createDescription(taskDescription);
-  const dropdown = createDropdown(taskTitle, list);
+  const dropdown = createDropdown(taskTitle, task);
   titleAndBtnFlexContainer.append(checkbox, label, dropdown);
   li.append(titleAndBtnFlexContainer, description);
   createDueDate(taskDueDate, li);
   return li;
 };
 
-const createDropdown = (taskTitle) => {
+const createDropdown = (taskTitle, task) => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
 
@@ -84,7 +86,7 @@ const createDropdown = (taskTitle) => {
   detailsBtn.setAttribute("data-bs-target", "#details-modal");
   detailsBtn.textContent = "Details";
   detailsLi.appendChild(detailsBtn);
-  attachDetailsBtnListener(detailsBtn, taskTitle);
+  attachDetailsBtnListener(detailsBtn, task);
 
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
@@ -101,10 +103,17 @@ const createDropdown = (taskTitle) => {
   return div;
 };
 
-const attachDetailsBtnListener = (button, taskTitle) => {
+const attachDetailsBtnListener = (button, task) => {
   button.addEventListener("click", () => {
-    console.log(taskTitle);
+    populateTaskDetailsForm(task);
   });
+};
+
+const populateTaskDetailsForm = (task) => {
+  document.querySelector("#details-task-title").value = task.title;
+  document.querySelector("#details-task-description").value = task.description;
+  document.querySelector("#details-task-priority-select").value = task.priority;
+  document.querySelector("#details-task-due-date").value = task.date;
 };
 
 const createLi = (taskPriority) => {
