@@ -147,7 +147,7 @@
                 <textarea class="form-control" id="task-description"></textarea>
               </div>
               <div class="mb-3">
-                <label for="Priority-Select" class="col-form-label"
+                <label for="task-priority-select" class="col-form-label"
                   >Priority</label
                 >
                 <select
@@ -162,18 +162,10 @@
               </div>
               <div class="mb-3">
                 <label for="task-due-date" class="pe-2">Due Date</label>
-                <input
-                  type="date"
-                  id="task-due-date"
-                  min=""
-                  max=""
-                  name=""
-                  value=""
-                />
+                <input type="date" id="task-due-date" />
               </div>
-
               <div class="mb-3">
-                <label for="list-select" class="col-form-label"
+                <label for="list-select-container" class="col-form-label"
                   >Add to List</label
                 >
                 <select
@@ -439,52 +431,46 @@
             ></button>
           </div>
           <div class="modal-body">
-              <form id="details-modal-form">
-                <div class="mb-3">
-                  <label for="task-title" class="col-form-label">Title</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="task-title"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="task-description" class="col-form-label"
-                    >Description</label
-                  >
-                  <textarea
-                    class="form-control"
-                    id="task-description"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="Priority-Select" class="col-form-label"
-                    >Priority</label
-                  >
-                  <select
-                    id="task-priority-select"
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="task-due-date" class="pe-2">Due Date</label>
-                  <input
-                    type="date"
-                    id="task-due-date"
-                    min=""
-                    max=""
-                    name=""
-                    value=""
-                  />
-                </div>
-              </form>
-            </>
+            <form id="details-modal-form">
+              <div class="mb-3">
+                <label for="details-task-title" class="col-form-label"
+                  >Title</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="details-task-title"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="details-task-description" class="col-form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="details-task-description"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="details-task-priority-select" class="col-form-label"
+                  >Priority</label
+                >
+                <select
+                  id="details-task-priority-select"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="details-task-due-date" class="pe-2">Due Date</label>
+                <input type="date" id="details-task-due-date" />
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button
