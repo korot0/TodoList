@@ -26,10 +26,18 @@ export const Task = (title, description, priority, date) => {
   }
 
   return {
-    title,
-    description,
-    priority,
-    date,
+    get title() {
+      return title;
+    },
+    get description() {
+      return description;
+    },
+    get priority() {
+      return priority;
+    },
+    get date() {
+      return date;
+    },
     editDetails,
     get formattedDate() {
       return getFormattedDate();

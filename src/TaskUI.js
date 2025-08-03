@@ -1,3 +1,4 @@
+import { set } from "date-fns";
 import { ListManager } from "./ListManager";
 import { TaskFilterManager } from "./TaskFilters";
 import { updateScreen } from "./UpdateScreen";
@@ -106,6 +107,7 @@ const createDropdown = (taskTitle, task, list) => {
 const attachDetailsBtnListener = (button, task) => {
   button.addEventListener("click", () => {
     populateTaskDetailsForm(task);
+    DetailsActiveTaskManager.setCurrentTask(task);
   });
 };
 
@@ -115,6 +117,14 @@ const populateTaskDetailsForm = (task) => {
   document.querySelector("#details-task-priority-select").value = task.priority;
   document.querySelector("#details-task-due-date").value = task.date;
 };
+
+export const DetailsActiveTaskManager = (() => {
+  let activeTask;
+  return {
+    setCurrentTask: (task) => (activeTask = task),
+    getCurrentTask: () => activeTask,
+  };
+})();
 
 const createLi = (taskPriority) => {
   const li = document.createElement("li");
