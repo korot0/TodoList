@@ -49,3 +49,4 @@ TODO:
     - Save checked list state
   - Can't delete "My Tasks"
   - Default List
+  - Filters: Only render non-empty lists
