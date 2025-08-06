@@ -10,7 +10,8 @@ Things learned so far:
 - Careful not to call functions unnecessarily inside loops. Ex. Calling ActiveListsManager inside the render loop
 - You were calling TaskFilterManager.setCurrentFilter(...), but TaskFilterManager is a factory function — it returns an object. So you need to first create an instance of it. Solution: Wrap IIFE to make it a singleton
 - Comment more! no comments on functions
-- When using factory functions, internal variables can be updated using functions like editDetails in Task. However, if the returned object exposes those variables as static properties then updates won't be reflected unless using getters. (ES6 getters)
+- When using factory functions, internal variables can be updated using functions like editDetails in Task. However, if the returned object exposes those variables as static properties then updates won't be reflected unless using getters. (ES6 get and set)
+- Don't call an IIFE lol
 
 ASSIGNMENT:
 
@@ -22,7 +23,7 @@ TODO:
 
 - CSS:
 
-  - Fix card height
+  - Fix card height wit single task
   - Fix "My Tasks" width when adding a long title. Ex "Loooooooooooooong"
   - Fix list accordion items margins
   - Fix long lists names in accordion
@@ -45,3 +46,5 @@ TODO:
 - Features:
 
   - Local storage
+  - Can't delete "My Tasks"
+  - Default List

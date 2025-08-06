@@ -1,5 +1,6 @@
 import { ListManager } from "./ListManager";
 import { showListToast } from "./ListUI";
+import { StorageManager } from "./StorageManager";
 import { updateScreen } from "./UpdateScreen";
 
 // Not srp compliant? might need to split, currently calling too many functions
@@ -8,6 +9,7 @@ const onListFormSubmit = (e) => {
   submitList();
   resetListModal();
   updateScreen();
+  StorageManager.storeData();
 };
 
 const submitList = () => {

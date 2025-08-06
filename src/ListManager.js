@@ -7,15 +7,15 @@ export const ListManager = (() => {
 
   const getCheckedLists = () => lists.filter((list) => list.isChecked === true);
 
+  const createList = (listName) => {
+    if (isDuplicateList(listName)) return false;
+    lists.push(List(listName));
+  };
+
   const renameList = (currentName, newName) => {
     if (isDuplicateList(newName)) return false;
     const list = getList(currentName);
     list.name = newName;
-  };
-
-  const createList = (listName) => {
-    if (isDuplicateList(listName)) return false;
-    lists.push(List(listName));
   };
 
   const removeList = (list) => {

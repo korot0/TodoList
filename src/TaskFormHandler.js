@@ -1,4 +1,5 @@
 import { ListManager } from "./ListManager";
+import { StorageManager } from "./StorageManager";
 import { DetailsActiveTaskManager } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
 
@@ -7,6 +8,7 @@ const onTaskFormSubmit = (e) => {
   submitTaskForm();
   resetTaskModal();
   updateScreen();
+  StorageManager.storeData();
 };
 
 const submitTaskForm = () => {

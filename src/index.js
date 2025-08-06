@@ -7,26 +7,13 @@ import { handleDetailsTaskForm } from "./TaskFormHandler";
 import { ListManager } from "./ListManager";
 import { updateScreen } from "./UpdateScreen";
 import { attachFilterBtnListener } from "./TaskFilters";
+import { StorageManager } from "./StorageManager";
 
-attachFilterBtnListener();
+/* If "My Tasks" does not exist then create it and store it */
+// if (!localStorage.getItem("My Tasks")) {
+//   ListManager.createList("My Tasks");
+// }
 
-// For debugging - delete later
-window.ListManager = ListManager;
-
-ListManager.createList("My Tasks");
-const myTasks = ListManager.getList("My Tasks");
-
-myTasks.addTask("Walk the dogs", "", "low", "2025-05-14");
-
-myTasks.addTask(
-  "Wash the dishes",
-  "Otherwise you get bugs then they bite then it's itchy then it sucks then you get irritated",
-  "medium",
-  ""
-);
-
-myTasks.addTask("Home title transfer", "Do this ASAP", "high", "2025-05-20");
-
-ListManager.createList("School");
-
+/* Load data then update UI */
+StorageManager.loadData();
 updateScreen();

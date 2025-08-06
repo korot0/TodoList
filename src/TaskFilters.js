@@ -70,14 +70,14 @@ export const TaskFilterManager = (() => {
   };
 })();
 
-export const attachFilterBtnListener = () => {
+export const attachFilterBtnListener = (() => {
   const buttons = document.querySelectorAll(".filter-btn");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       onFilterBtnClick(buttons, button);
     });
   });
-};
+})();
 
 const onFilterBtnClick = (buttons, button) => {
   applyFilter(button);
