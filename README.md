@@ -46,5 +46,6 @@ TODO:
 - Features:
 
   - Local storage
+    - Save checked list state
   - Can't delete "My Tasks"
   - Default List
