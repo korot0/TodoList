@@ -35,6 +35,10 @@ export const List = (name) => {
     completedTasks = completedTasks.filter((t) => t.title !== taskTitle);
   };
 
+  const checkToggle = (bool) => {
+    isChecked = bool;
+  };
+
   return {
     name,
     isChecked,
@@ -44,6 +48,7 @@ export const List = (name) => {
     get isChecked() {
       return isChecked;
     },
+    checkToggle,
     getName: () => name,
     setName: (newName) => (name = newName),
     getCompletedTasks: () => completedTasks,

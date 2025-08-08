@@ -202,7 +202,7 @@ const setListCheckboxUI = (checkbox, listName) => {
 
 const updateListCheckedStatus = (listName) => {
   const list = ListManager.getList(listName);
-  list.isChecked = !list.isChecked;
+  list.checkToggle(!list.isChecked);
 };
 
 const attachListCheckboxListener = (checkbox, listName) => {
