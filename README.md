@@ -12,6 +12,7 @@ Things learned so far:
 - Comment more! no comments on functions
 - When using factory functions, internal variables can be updated using functions like editDetails in Task. However, if the returned object exposes those variables as static properties then updates won't be reflected unless using getters. (ES6 get and set)
 - Don't call an IIFE lol
+- Without getters/setters, public properties and private closure variables are independent and can get out of sync, causing list.name to show an old value.
 
 ASSIGNMENT:
 
@@ -47,6 +48,4 @@ TODO:
 
   - Local storage
     - Save checked list state
-  - Can't delete "My Tasks"
-  - Default List
   - Filters: Only render non-empty lists

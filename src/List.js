@@ -17,6 +17,10 @@ export const List = (name) => {
     tasks.push(Task(title, description, priority, dueDate));
   };
 
+  const addCompletedTask = (title, description, priority, dueDate) => {
+    completedTasks.push(Task(title, description, priority, dueDate));
+  };
+
   const completeTask = (taskTitle) => {
     const task = getTask(taskTitle);
     completedTasks.push(task);
@@ -34,11 +38,19 @@ export const List = (name) => {
   return {
     name,
     isChecked,
+    get name() {
+      return name;
+    },
+    get isChecked() {
+      return isChecked;
+    },
     getName: () => name,
+    setName: (newName) => (name = newName),
     getCompletedTasks: () => completedTasks,
     getTasks,
     getTask,
     addTask,
+    addCompletedTask,
     removeTask,
     removeCompletedTask,
     completeTask,

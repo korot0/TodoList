@@ -3,7 +3,8 @@ import { List } from "./List";
 export const ListManager = (() => {
   let lists = [];
 
-  const getList = (listName) => lists.find((list) => list.name === listName);
+  const getList = (listName) =>
+    lists.find((list) => list.getName() === listName);
 
   const getCheckedLists = () => lists.filter((list) => list.isChecked === true);
 
@@ -15,15 +16,17 @@ export const ListManager = (() => {
   const renameList = (currentName, newName) => {
     if (isDuplicateList(newName)) return false;
     const list = getList(currentName);
-    list.name = newName;
+    list.setName(newName);
   };
 
   const removeList = (list) => {
-    lists = lists.filter((l) => l.name !== list.name);
+    lists = lists.filter((l) => l.name !== list.getName());
   };
 
   const isDuplicateList = (listName) =>
-    lists.some((list) => list.name.toLowerCase() === listName.toLowerCase());
+    lists.some(
+      (list) => list.getName().toLowerCase() === listName.toLowerCase()
+    );
 
   return {
     getLists: () => lists,

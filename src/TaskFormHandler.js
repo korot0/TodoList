@@ -42,6 +42,7 @@ const onDetailsTaskFormSubmit = (e) => {
   submitDetailsForm();
   closeDetailsFormModal();
   updateScreen();
+  StorageManager.storeData();
 };
 
 const submitDetailsForm = () => {

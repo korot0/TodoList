@@ -2,6 +2,7 @@ import { Toast } from "bootstrap";
 import { ListManager } from "./ListManager";
 import { displayTasksUI } from "./TaskUI";
 import { updateScreen } from "./UpdateScreen";
+import { StorageManager } from "./StorageManager";
 
 /* Rendering list cards in main content */
 export const renderLists = () => {
@@ -17,8 +18,8 @@ const renderCards = (lists, cardContainer) => {
 };
 
 const createCard = (list, cardContainer) => {
-  createListCardElement(list.name, cardContainer);
-  const ulParentEl = assignParentIDtoTask(list.name);
+  createListCardElement(list.getName(), cardContainer);
+  const ulParentEl = assignParentIDtoTask(list.getName());
   displayTasksUI(list, ulParentEl);
 };
 
@@ -40,30 +41,73 @@ const createListCardElement = (listName, cardContainer) => {
 };
 
 const createCardHeader = (listName) => {
-  const cardHeader = document.createElement("div");
-  cardHeader.classList.add("card-header-container", "card-header");
-  const h5 = document.createElement("h5");
-  h5.textContent = listName;
-
+  const cardHeader = header();
+  const h5 = createHeaderEl(listName);
   const dropdown = createDropdown(listName);
-
-  cardHeader.append(h5, dropdown);
+  cardHeaderAppendHandler(cardHeader, h5, dropdown);
   return cardHeader;
 };
 
+const header = () => {
+  const cardHeader = document.createElement("div");
+  cardHeader.classList.add("card-header-container", "card-header");
+  return cardHeader;
+};
+
+const createHeaderEl = (listName) => {
+  const h5 = document.createElement("h5");
+  h5.textContent = listName;
+  return h5;
+};
+
+const cardHeaderAppendHandler = (cardHeader, h5, dropdown) => {
+  // Having an undefined dropdown means its our default list// Having an undefined dropdown means its our default list
+  if (dropdown === undefined) cardHeader.appendChild(h5);
+  else cardHeader.append(h5, dropdown);
+};
+
 const createDropdown = (listName) => {
+  if (listName === "My Tasks") return; // We don't want to delete or rename our default list
+  const container = dropdownContainer();
+  const button = dropdownBtn();
+  const ul = dropdownUl();
+  const renameLi = dropdownRenameList(listName);
+  const deleteLi = dropdownDeleteList(listName);
+  dropdownUlAppendHandler(ul, renameLi, deleteLi);
+  dropdownContainerAppendHandler(container, button, ul);
+  return container;
+};
+
+const dropdownUlAppendHandler = (ul, renameLi, deleteLi) => {
+  ul.append(renameLi, deleteLi);
+};
+
+const dropdownContainerAppendHandler = (container, button, ul) => {
+  container.append(button, ul);
+};
+
+const dropdownContainer = () => {
   const div = document.createElement("div");
   div.classList.add("list-dropdown");
+  return div;
+};
 
+const dropdownBtn = () => {
   const button = document.createElement("button");
   button.classList.add("material-symbols-outlined", "list-dropdown-btn");
   button.setAttribute("data-bs-toggle", "dropdown");
   button.setAttribute("aria-expanded", "false");
   button.textContent = "more_vert";
+  return button;
+};
 
+const dropdownUl = () => {
   const ul = document.createElement("ul");
   ul.classList.add("dropdown-menu");
+  return ul;
+};
 
+const dropdownRenameList = (listName) => {
   const renameLi = document.createElement("li");
   const renameBtn = document.createElement("button");
   renameBtn.classList.add("dropdown-item");
@@ -72,7 +116,10 @@ const createDropdown = (listName) => {
   renameBtn.textContent = "Rename";
   renameLi.appendChild(renameBtn);
   attachRenameBtnListener(renameBtn, listName);
+  return renameLi;
+};
 
+const dropdownDeleteList = (listName) => {
   const deleteLi = document.createElement("li");
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("dropdown-item", "text-danger");
@@ -81,10 +128,7 @@ const createDropdown = (listName) => {
   deleteBtn.textContent = "Delete";
   deleteLi.appendChild(deleteBtn);
   attachDeleteBtnListener(deleteBtn, listName);
-
-  ul.append(renameLi, deleteLi);
-  div.append(button, ul);
-  return div;
+  return deleteLi;
 };
 
 const formatListULID = (listName) => `${listName.replace(/\s+/g, "-")}-ul`;
@@ -101,6 +145,7 @@ const deleteListConfirmation = (listName) => {
   listModalDeleteBtn.onclick = () => {
     const list = ListManager.getList(listName);
     ListManager.removeList(list);
+    StorageManager.removeListAndStoreData(listName);
     updateScreen();
   };
 };
@@ -122,7 +167,7 @@ export const renderListsAccordion = () => {
   const accordion = document.querySelector("#lists-accordion-body");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
-    const accordionList = createListAccordionElement(list.name);
+    const accordionList = createListAccordionElement(list.getName());
     accordion.appendChild(accordionList);
   });
 };
@@ -172,7 +217,7 @@ export const renderSelectListsAccordion = () => {
   const cardContainer = document.querySelector("#list-select-container");
   const lists = ListManager.getLists();
   lists.forEach((list) => {
-    const optionEl = createSelectListElement(list.name);
+    const optionEl = createSelectListElement(list.getName());
     cardContainer.appendChild(optionEl);
   });
 };

@@ -36,7 +36,6 @@ header {
 .card {
   width: 25rem;
   padding: 0;
-  overflow: auto;
 }
 
 .card:hover {

@@ -32,6 +32,7 @@ export const handleListForm = (() => {
 const onRenameListFormSubmit = (e) => {
   e.preventDefault();
   submitRenameList();
+  StorageManager.removeListAndStoreData(retrieveNameFromBuffer());
   resetRenameListModal();
   updateScreen();
 };

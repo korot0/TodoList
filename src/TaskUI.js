@@ -2,6 +2,7 @@ import { set } from "date-fns";
 import { ListManager } from "./ListManager";
 import { TaskFilterManager } from "./TaskFilters";
 import { updateScreen } from "./UpdateScreen";
+import { StorageManager } from "./StorageManager";
 
 export const displayTasksUI = (list, parent) => {
   displayActiveTasks(list, parent);
@@ -151,6 +152,7 @@ const createCheckbox = (taskTitle, list) => {
 const attachCheckboxListener = (checkbox, taskTitle, list) => {
   checkbox.addEventListener("click", () => {
     list.completeTask(taskTitle);
+    StorageManager.storeData();
     updateScreen();
   });
 };
@@ -190,6 +192,7 @@ const deleteTaskConfirmation = (taskTitle, list) => {
   const taskModalDeleteBtn = document.querySelector("#task-modal-delete-btn");
   taskModalDeleteBtn.onclick = () => {
     list.removeTask(taskTitle);
+    StorageManager.storeData();
     updateScreen();
   };
 };
@@ -284,8 +287,9 @@ const attachCompletedTaskDeleteListener = (deleteBtn, list, taskTitle) => {
 };
 
 const handleCompletedTaskDelete = (list, taskTitle) => {
-  const targetList = ListManager.getList(list.name);
+  const targetList = ListManager.getList(list.getName());
   targetList.removeCompletedTask(taskTitle);
+  StorageManager.storeData();
   updateScreen();
 };
 
